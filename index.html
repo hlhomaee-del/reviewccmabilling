@@ -152,6 +152,16 @@ button{cursor:pointer;font-family:inherit}
 @media(max-width:700px){.flipMini{flex-basis:82vw}.scrollCard{min-width:82vw}.fs{min-width:145px}.fwrap{height:460px}.face{padding:24px}.miniHero h3{font-size:23px}.lx .g p{font-size:15px}}
 
 @media(max-width:600px){.mg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}.nav button{font-size:10px;padding:5px 8px}.g{padding:14px}}
+
+
+/* === FLASHCARD ENGAGEMENT UPGRADE === */
+.flashShell{background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(236,72,153,.08));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px;margin:16px 0;box-shadow:0 12px 32px rgba(0,0,0,.28)}
+.flashTop{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}.flashBadge{display:inline-flex;align-items:center;gap:6px;background:rgba(250,204,21,.18);border:1px solid rgba(250,204,21,.32);color:#fde68a;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:950}.flashCount{font-size:14px;color:#dbeafe;font-weight:800}
+.fwrap{height:520px!important;max-width:760px!important}.face{padding:30px!important;gap:14px}.ff,.fb{overflow-y:auto!important}.ff{background:radial-gradient(circle at top left,rgba(56,189,248,.40),transparent 38%),linear-gradient(145deg,rgba(37,99,235,.35),rgba(139,92,246,.18))!important}.fb{background:radial-gradient(circle at top right,rgba(250,204,21,.22),transparent 35%),linear-gradient(145deg,rgba(16,185,129,.24),rgba(20,184,166,.13))!important}
+.ff .tm{font-size:34px!important;line-height:1.06;text-shadow:0 3px 18px rgba(0,0,0,.28)}.flashCategoryPill{align-self:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.20);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:900;color:#e0f2fe}.tapToFlip{margin-top:auto;background:rgba(11,16,38,.50);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 16px;color:#fff;font-weight:900;text-align:center;box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.flashTeachGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;width:100%;margin-top:6px}.flashTeachBox{border-radius:18px;padding:15px;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 22px rgba(0,0,0,.22);position:relative;overflow:hidden;min-height:112px}.flashTeachBox:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.17),transparent 58%);pointer-events:none}.flashTeachBox h5{font-size:15px;font-weight:950;margin-bottom:6px;color:#fff;position:relative}.flashTeachBox p{font-size:14px!important;line-height:1.45!important;color:#f8fafc!important;font-weight:650!important;margin:0!important;position:relative}.flashTeachBox.meaning{background:linear-gradient(135deg,#2563EB,#38BDF8)}.flashTeachBox.clue{background:linear-gradient(135deg,#7C3AED,#EC4899)}.flashTeachBox.exam{background:linear-gradient(135deg,#059669,#14B8A6)}.flashTeachBox.trap{background:linear-gradient(135deg,#E11D48,#FB7185)}.flashTeachBox.math{background:linear-gradient(135deg,#EA580C,#FACC15)}.flashTeachBox.math h5,.flashTeachBox.math p{color:#111!important}.flashBackTitle{font-size:22px;font-weight:950;color:#fff;margin-bottom:4px}.flashMiniRule{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-left:5px solid var(--gold);border-radius:14px;padding:12px 14px;color:#fff;font-size:15px;font-weight:750;line-height:1.5}.flashBackHint{font-size:13px;color:#fde68a;font-weight:850;margin-top:auto;text-align:center}.flashMapWrap{padding:22px!important}.flashMapTitle{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}.flashMapTitle h4{font-size:23px!important;margin:0}.flashMapTitle p{font-size:14px!important;color:#dbeafe!important;margin:0!important;font-weight:700}.fm{gap:9px!important;justify-content:flex-start!important;align-items:center}.fd{width:38px!important;height:38px!important;border-radius:12px!important;font-size:14px!important;font-weight:950!important;box-shadow:0 5px 14px rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.22)!important}.fd:hover{transform:translateY(-3px) scale(1.05)}.fd.cu{box-shadow:0 0 0 4px rgba(56,189,248,.22),0 8px 20px rgba(0,0,0,.35)!important}.flashLegend{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;font-size:13px;font-weight:850;color:#eaf2ff}.flashLegend span{display:flex;align-items:center;gap:7px}.flashLegend i{width:18px;height:18px;border-radius:6px;display:inline-block;box-shadow:0 3px 10px rgba(0,0,0,.24)}
+@media(max-width:700px){.fwrap{height:560px!important}.flashTeachGrid{grid-template-columns:1fr}.fd{width:34px!important;height:34px!important;font-size:12px!important}.ff .tm{font-size:28px!important}}
+
 @media print{.top{display:none}.sec{display:block!important}.g{break-inside:avoid;border:1px solid #ccc}}
 </style>
 </head>
@@ -485,20 +495,50 @@ const FC=[
 
 /* === FLASHCARD UI === */
 let fcCat='All',fcI=0;
+function escHTML(x){return String(x||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function plainText(x){const d=document.createElement('div');d.innerHTML=String(x||'');return d.textContent||d.innerText||''}
+function catIcon(c){return {'Insurance':'🛡️','Medicare':'🏛️','Revenue Cycle':'🔄','ICD-10-CM':'🔢','CPT/HCPCS':'⚙️','Modifiers':'🏷️','Prior Auth/ABN':'📝','Denials/Appeals':'❌','EOB/Aging':'📄','HIPAA':'🔒'}[c]||'🃏'}
+function keyWords(text){return plainText(text).replace(/[^A-Za-z0-9\/%+\-$ ]/g,' ').split(/\s+/).filter(w=>w.length>3).slice(0,5).join(' • ')}
+function examRule(fc){const t=(fc.f+' '+fc.b+' '+fc.c).toLowerCase();
+ if(t.includes('deductible')||t.includes('coinsurance')||t.includes('allowed'))return 'Do the math from the allowed amount, not the billed charge.';
+ if(t.includes('abn'))return 'ABN is Medicare-specific and must happen before the service.';
+ if(t.includes('rule-out')||t.includes('rule out'))return 'Outpatient rule-out is not coded as confirmed; code the symptoms.';
+ if(t.includes('modifier 25')||t.includes('25'))return 'Modifier 25 belongs on the E/M code when the E/M is separately supported.';
+ if(t.includes('rejection'))return 'Rejected means not processed; fix the data and resubmit.';
+ if(t.includes('denial'))return 'Denied means processed but not paid; review reason code and appeal only with support.';
+ if(t.includes('hipaa')||t.includes('phi')||t.includes('tpo'))return 'Verify identity and share only the minimum necessary unless treatment disclosure applies.';
+ if(t.includes('referral'))return 'HMO/POS clues usually point to referral logic before specialist care.';
+ if(t.includes('prior auth')||t.includes('precertification'))return 'Prior approval is checked before service, but it never guarantees payment.';
+ if(t.includes('icd'))return 'ICD answers WHY: diagnosis, symptom, reason for encounter.';
+ if(t.includes('cpt'))return 'CPT answers WHAT service or procedure was performed.';
+ if(t.includes('hcpcs'))return 'HCPCS Level II often reports supplies, DME, ambulance, or certain drugs.';
+ return 'Read for the controlling clue, then eliminate options that belong to another billing concept.';}
+function trapText(fc){const c=fc.c, t=(fc.f+' '+fc.b).toLowerCase();
+ if(c==='Insurance')return 'Trap: confusing premium, deductible, copay, and coinsurance. They are not interchangeable.';
+ if(c==='Medicare')return 'Trap: Part B covers many outpatient/DME items; Part D is drug coverage.';
+ if(c==='Revenue Cycle')return 'Trap: clearinghouse edits are not the same as payer adjudication.';
+ if(c==='ICD-10-CM')return 'Trap: do not add details or confirmed diagnoses that are not documented.';
+ if(c==='Modifiers')return 'Trap: side/location modifiers add anatomy; they do not replace the CPT code.';
+ if(c==='Denials/Appeals')return 'Trap: rejection, denial, corrected claim, and appeal are different actions.';
+ if(c==='HIPAA')return 'Trap: family/employer requests usually need authorization; payer/payment requests can fall under TPO.';
+ return 'Trap: choose the answer that matches the exact workflow moment in the stem.';}
+function flashFront(fc,idx,total){return `<div class="flashCategoryPill">${catIcon(fc.c)} ${escHTML(fc.c)} • Card ${idx+1}/${total}</div><div class="tm">${escHTML(fc.f)}</div><div class="flashTeachGrid"><div class="flashTeachBox clue"><h5>🔎 What to notice</h5><p>${escHTML(keyWords(fc.b)||fc.f)}</p></div><div class="flashTeachBox exam"><h5>🎯 Test focus</h5><p>${escHTML(examRule(fc))}</p></div></div><div class="tapToFlip">Tap the card to see the teaching breakdown →</div>`}
+function flashBack(fc){return `<div class="flashBackTitle">${catIcon(fc.c)} ${escHTML(fc.f)}</div><div class="flashTeachGrid"><div class="flashTeachBox meaning"><h5>Meaning</h5><p>${escHTML(plainText(fc.b))}</p></div><div class="flashTeachBox exam"><h5>How to use it</h5><p>${escHTML(examRule(fc))}</p></div><div class="flashTeachBox trap"><h5>Common trap</h5><p>${escHTML(trapText(fc))}</p></div></div><div class="flashMiniRule"><b>Memory move:</b> ${escHTML(fc.f)} belongs to <b>${escHTML(fc.c)}</b>. Ask: is the question testing cost, code set, form step, payer rule, or privacy rule?</div><div class="flashBackHint">Flip back or answer the concept check below.</div>`}
 function gFC(){return fcCat==='All'?FC:FC.filter(f=>f.c===fcCat)}
 function bFC(){const cats=['All',...new Set(FC.map(f=>f.c))];
-let h=`<div class="g"><h2>🃏 Flashcard Vault</h2><p>${FC.length} cards, ${cats.length-1} categories. Click to flip, then rate.</p></div>`;
+let h=`<div class="g"><h2>🃏 Flashcard Vault</h2><p>${FC.length} cards, ${cats.length-1} categories. Click to flip, then rate. The cards now teach with color boxes, test-focus clues, and common traps.</p></div>`;
 h+=`<div class="fcc">${cats.map(c=>`<button class="fcb${c==='All'?' on':''}" onclick="fcCat='${c}';fcI=0;document.querySelectorAll('.fcb').forEach(b=>b.classList.remove('on'));this.classList.add('on');rFC()">${c}</button>`).join('')}</div>`;
-h+=`<div id="fca"></div><div class="fa" id="fcA"></div><div id="fcQ"></div>`;
-h+=`<div class="g"><h4>🗺️ Card Map</h4><div class="fm" id="fcM"></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;font-size:10px"><span>🟦Unvisited</span><span>🔵Current</span><span>🟩Mastered</span><span>🟨Bookmarked</span><span>🟥Study Again</span></div></div>`;
+h+=`<div class="flashShell"><div class="flashTop"><span class="flashBadge">✨ Interactive teaching card</span><span class="flashCount" id="fcCount"></span></div><div id="fca"></div><div class="fa" id="fcA"></div><div id="fcQ"></div></div>`;
+h+=`<div class="g flashMapWrap"><div class="flashMapTitle"><h4>🗺️ Big Card Map</h4><p>Tap any number to jump directly to that card.</p></div><div class="fm" id="fcM"></div><div class="flashLegend"><span><i style="background:var(--ltblue)"></i>Unvisited</span><span><i style="background:var(--royal)"></i>Current</span><span><i style="background:var(--emerald)"></i>Mastered</span><span><i style="background:var(--gold)"></i>Bookmarked</span><span><i style="background:var(--rose)"></i>Study Again</span></div></div>`;
 document.getElementById('s2').innerHTML=h;rFC()}
 function rFC(){const fl=gFC();if(!fl.length)return;if(fcI>=fl.length)fcI=0;const fc=fl[fcI],gi=FC.indexOf(fc);
-document.getElementById('fca').innerHTML=`<div class="fwrap" onclick="document.getElementById('fi').classList.toggle('flip');pF()"><div class="finn" id="fi"><div class="face ff"><div class="tm">${fc.f}</div><p style="font-size:11px;color:var(--dim);margin-top:10px">${fc.c} — click to flip</p></div><div class="face fb"><div class="df">${fc.b}</div></div></div></div>`;
+document.getElementById('fcCount').textContent=`${fcCat} • ${fcI+1} of ${fl.length}`;
+document.getElementById('fca').innerHTML=`<div class="fwrap" onclick="document.getElementById('fi').classList.toggle('flip');pF()"><div class="finn" id="fi"><div class="face ff">${flashFront(fc,fcI,fl.length)}</div><div class="face fb"><div class="df">${flashBack(fc)}</div></div></div></div>`;
 document.getElementById('fcA').innerHTML=`<button class="btn bs" onclick="S.fc[${gi}]='m';ss();uP();nFC()">✓ Got It</button><button class="btn bd" onclick="S.fc[${gi}]='s';ss();nFC()">✗ Study Again</button><button class="btn bw" onclick="S.fc[${gi}]='b';ss();nFC()">★ Bookmark</button><button class="btn bp" onclick="nFC()">→ Next</button>`;
 document.getElementById('fcQ').innerHTML=`<div class="qb"><div class="qt">${fc.q}</div>${fc.o.map((o,i)=>`<button class="ob" onclick="cQ(this,${fc.a===i},'fcr')">${'ABCD'[i]}. ${o}</button>`).join('')}<div class="rt" id="fcr">${fmtR(fc.r)}</div></div>`;
 rFM()}
 function nFC(){const f=gFC();fcI=(fcI+1)%f.length;rFC()}
-function rFM(){const fl=gFC();document.getElementById('fcM').innerHTML=fl.map((fc,i)=>{const gi=FC.indexOf(fc),st=S.fc[gi]||'';const cls=i===fcI?'cu':st==='m'?'ma':st==='s'?'sa':st==='b'?'bk':'uv';return`<button class="fd ${cls}" onclick="fcI=${i};rFC()" title="${fc.f}">${i+1}</button>`}).join('')}
+function rFM(){const fl=gFC();document.getElementById('fcM').innerHTML=fl.map((fc,i)=>{const gi=FC.indexOf(fc),st=S.fc[gi]||'';const cls=i===fcI?'cu':st==='m'?'ma':st==='s'?'sa':st==='b'?'bk':'uv';return`<button class="fd ${cls}" onclick="fcI=${i};rFC()" title="${escHTML(fc.f)}">${i+1}</button>`}).join('')}
 
 /* === CODING BOOK === */
 function bCB(){
