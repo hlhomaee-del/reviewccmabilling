@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCMA Billing, Coding & Insurance Mastery</title>
+<style>
+:root{--navy:#0B1026;--royal:#2563EB;--sky:#38BDF8;--ltblue:#DBEAFE;--teal:#14B8A6;--emerald:#10B981;--lime:#A3E635;--gold:#FACC15;--orange:#FB923C;--rose:#EF4444;--pink:#EC4899;--purple:#8B5CF6;--lavender:#DDD6FE;--cream:#FFF7ED;--white:#FFFFFF;--glass:rgba(255,255,255,0.08);--text:#e8edf5;--dim:#94a3b8;--rad:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.65}
+button{cursor:pointer;font-family:inherit}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--royal);border-radius:3px}
+.top{position:sticky;top:0;z-index:999;background:rgba(11,16,38,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{display:flex;overflow-x:auto;gap:2px;padding:6px 10px}
+.nav button{padding:7px 13px;border:none;background:0;color:var(--dim);font-size:12px;font-weight:600;border-radius:8px;white-space:nowrap;transition:.2s}
+.nav button:hover,.nav button.on{background:var(--royal);color:#fff}
+.snd{margin-left:auto;padding:5px 10px;border:1px solid var(--sky);background:0;color:var(--sky);border-radius:6px;font-size:11px}
+.snd.on{background:var(--sky);color:var(--navy)}
+.prog{display:flex;gap:14px;padding:6px 14px;background:rgba(255,255,255,.02);flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim)}
+.prog b{color:var(--lime);font-size:13px}
+.sec{display:none;padding:20px 14px;max-width:1100px;margin:auto;animation:fu .35s}
+.sec.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.g{background:var(--glass);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:var(--rad);padding:22px;margin-bottom:18px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.g h2{font-size:20px;margin-bottom:10px}.g h3{font-size:16px;margin-bottom:6px}.g p{color:var(--dim);margin-bottom:6px}
+.btn{padding:9px 18px;border:none;border-radius:9px;font-weight:600;font-size:13px;transition:.2s;display:inline-flex;align-items:center;gap:5px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.bp{background:linear-gradient(135deg,var(--royal),var(--sky));color:#fff}
+.bs{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
+.bw{background:linear-gradient(135deg,var(--orange),var(--gold));color:var(--navy)}
+.bd{background:linear-gradient(135deg,var(--rose),var(--pink));color:#fff}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:14px}
+.mn{background:var(--glass);border:2px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 12px;text-align:center;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.mn::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.mn:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.4);border-color:rgba(255,255,255,.25)}
+.mn .ic{font-size:28px;display:block;margin-bottom:6px}.mn .lb{font-size:12px;font-weight:600}
+.mn.cb::before{background:linear-gradient(90deg,var(--royal),var(--sky))}
+.mn.cp::before{background:linear-gradient(90deg,var(--purple),var(--lavender))}
+.mn.cg::before{background:linear-gradient(90deg,var(--emerald),var(--lime))}
+.mn.co::before{background:linear-gradient(90deg,var(--orange),var(--gold))}
+.mn.ck::before{background:linear-gradient(90deg,var(--pink),var(--rose))}
+.mn.ct::before{background:linear-gradient(90deg,var(--teal),var(--sky))}
+.mn.cd::before{background:linear-gradient(90deg,var(--gold),var(--orange))}
+.mn.cr::before{background:linear-gradient(90deg,var(--rose),var(--pink))}
+.mn.cn::before{background:linear-gradient(90deg,var(--navy),var(--lavender))}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;justify-content:center;align-items:center;padding:16px}
+.mo.show{display:flex}
+.mb{background:linear-gradient(145deg,#1a1f3a,#0f1429);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:24px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;animation:mi .3s}
+@keyframes mi{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.mc{float:right;background:0;border:0;color:var(--dim);font-size:22px;cursor:pointer}
+.lc{background:var(--glass);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.lc:hover{background:rgba(255,255,255,.12);transform:translateX(3px)}
+.lc .nm{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;color:#fff}
+.lx{display:none;animation:fu .35s}.lx.show{display:block}
+.ib{border-radius:10px;padding:14px;margin:10px 0;border-left:4px solid}
+.ib.ex{background:rgba(37,99,235,.12);border-color:var(--royal)}
+.ib.wk{background:rgba(20,184,166,.12);border-color:var(--teal)}
+.ib.tr{background:rgba(239,68,68,.12);border-color:var(--rose)}
+.ib.st{background:rgba(139,92,246,.12);border-color:var(--purple)}
+.ib h4{font-size:13px;margin-bottom:4px}
+.qb{background:rgba(250,204,21,.06);border:1px solid rgba(250,204,21,.15);border-radius:12px;padding:18px;margin:14px 0}
+.qb .qt{font-weight:600;margin-bottom:10px;font-size:14px}
+.ob{display:block;width:100%;text-align:left;padding:10px 14px;margin:5px 0;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.04);color:var(--text);font-size:13px;transition:.2s}
+.ob:hover:not(.dis){background:rgba(255,255,255,.1)}
+.ob.ok{background:rgba(16,185,129,.22);border-color:var(--emerald);animation:gl 1s}
+.ob.no{background:rgba(239,68,68,.18);border-color:var(--rose);animation:sh .4s}
+@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes gl{0%{box-shadow:0 0 0 transparent}50%{box-shadow:0 0 16px rgba(16,185,129,.4)}100%{box-shadow:0 0 0 transparent}}
+.rt{display:none;margin-top:10px;padding:12px;background:rgba(255,255,255,.04);border-radius:8px;font-size:12px;line-height:1.7}
+.rt.show{display:block;animation:fu .3s}
+.fcc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.fcb{padding:5px 12px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:0;color:var(--dim);font-size:11px;transition:.2s}
+.fcb.on{background:var(--royal);color:#fff;border-color:var(--royal)}
+.fwrap{perspective:1000px;margin:16px auto;max-width:480px;height:320px;cursor:pointer}
+.finn{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.finn.flip{transform:rotateY(180deg)}
+.face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+.ff{background:linear-gradient(145deg,rgba(37,99,235,.25),rgba(56,189,248,.12));border:1px solid rgba(56,189,248,.25)}
+.fb{background:linear-gradient(145deg,rgba(16,185,129,.18),rgba(20,184,166,.12));border:1px solid rgba(20,184,166,.25);transform:rotateY(180deg)}
+.ff .tm{font-size:20px;font-weight:700;text-align:center}
+.fb .df{font-size:13px;line-height:1.65}
+.fa{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.fm{display:flex;flex-wrap:wrap;gap:3px;margin-top:14px;justify-content:center}
+.fd{width:18px;height:18px;border-radius:5px;border:none;font-size:7px;transition:.2s;cursor:pointer;color:#fff}
+.fd.uv{background:var(--ltblue);color:var(--navy)}.fd.cu{background:var(--royal)}.fd.ma{background:var(--emerald)}.fd.sa{background:var(--rose)}.fd.bk{background:var(--gold);color:var(--navy)}
+.qm{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:14px;justify-content:center}
+.qd{width:30px;height:30px;border-radius:7px;border:none;font-size:11px;font-weight:700;transition:.2s;cursor:pointer;color:#fff}
+.qd.uv{background:var(--ltblue);color:var(--navy)}.qd.cu{background:var(--royal)}.qd.ok{background:var(--emerald)}.qd.no{background:var(--rose)}.qd.fl{background:var(--gold);color:var(--navy)}
+.leg{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;font-size:11px}
+.leg span{display:flex;align-items:center;gap:3px}
+.ld{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tb{height:5px;border-radius:3px;background:rgba(255,255,255,.08);margin-bottom:14px;overflow:hidden}
+.tf{height:100%;background:linear-gradient(90deg,var(--emerald),var(--gold),var(--rose));border-radius:3px;transition:width .1s linear}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.dc{background:var(--glass);border-radius:14px;padding:18px;text-align:center}
+.dc .bn{font-size:32px;font-weight:800;margin:6px 0}.dc .dl{font-size:11px;color:var(--dim)}
+.ft{display:flex;gap:6px;overflow-x:auto;padding:16px 0;align-items:center}
+.fs{flex-shrink:0;background:var(--glass);border-radius:12px;padding:10px;width:120px;text-align:center;font-size:11px;cursor:pointer;transition:.2s;border:2px solid transparent}
+.fs:hover,.fs.on{border-color:var(--sky);transform:scale(1.04)}
+.fa2{color:var(--sky);font-size:18px;flex-shrink:0}
+.mt{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.mt th{background:rgba(236,72,153,.15);padding:7px 10px;text-align:left;border-radius:5px}
+.mt td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mt tr:hover td{background:rgba(255,255,255,.04)}
+.ec{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:16px;margin:10px 0}
+.er{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.er.tot{font-weight:700;font-size:15px;border-top:2px solid var(--purple);border-bottom:none;margin-top:6px;padding-top:8px}
+.dc2{background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.25);border-radius:10px;padding:12px;margin:6px 0;display:flex;align-items:flex-start;gap:8px;font-size:13px}
+.dc2 b{color:var(--teal);flex-shrink:0}
+.cms{background:linear-gradient(145deg,#fefefe,#f0f0f0);color:#111;border-radius:14px;padding:20px;font-size:12px;position:relative}
+.cms .fld{border:1px solid #999;padding:5px 8px;margin:3px;min-height:26px;border-radius:3px;position:relative;cursor:help;background:#fff}
+.cms .fld:hover{background:#e0f0ff}
+.tt{display:none;position:absolute;bottom:105%;left:0;background:#1a1f3a;color:#fff;padding:8px 12px;border-radius:8px;font-size:11px;width:240px;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.fld:hover .tt{display:block}
+.cms h4{background:var(--navy);color:#fff;padding:5px 10px;border-radius:5px;margin:8px 0 4px;font-size:12px}
+.cr{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:3px}
+.cj{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0}
+.cs{padding:10px;border-radius:10px;text-align:center;font-size:11px;min-width:100px;cursor:pointer;transition:.2s}
+.cs:hover{transform:scale(1.04)}
+.cp{position:fixed;width:8px;height:8px;z-index:9999;pointer-events:none;animation:cf 1.8s ease-out forwards}
+@keyframes cf{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+.db{padding:5px 10px;margin:2px;border:1px solid rgba(255,255,255,.15);border-radius:7px;background:rgba(255,255,255,.06);color:var(--text);font-size:11px;cursor:pointer;transition:.2s}
+.db:hover{background:var(--pink);color:#fff}.db.sel{background:var(--pink);color:#fff}
+
+/* === VISUAL MINI-LESSON UPGRADE === */
+.miniHero{background:linear-gradient(135deg,rgba(56,189,248,.16),rgba(139,92,246,.12));border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:18px;margin:12px 0;color:#fff}
+.miniHero h3{font-size:22px;margin-bottom:6px;color:#fff}.miniHero p{color:#dbeafe!important;font-size:14px}
+.teachGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin:14px 0}
+.teachBox{border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 22px rgba(0,0,0,.22);min-height:118px;position:relative;overflow:hidden;color:#fff}
+.teachBox:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.14),transparent 55%);pointer-events:none}
+.teachBox h4{font-size:15px;margin-bottom:7px;color:#fff}.teachBox p{font-size:12.5px;color:#f8fafc!important;line-height:1.45;margin:0}
+.blue{background:linear-gradient(135deg,#2563EB,#38BDF8)}.green{background:linear-gradient(135deg,#059669,#14B8A6)}.purple{background:linear-gradient(135deg,#7C3AED,#EC4899)}.orange{background:linear-gradient(135deg,#EA580C,#FACC15);color:#111}.orange h4,.orange p{color:#111!important}.rose{background:linear-gradient(135deg,#E11D48,#FB7185)}.navybox{background:linear-gradient(135deg,#1E293B,#334155)}
+.flipGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}.flipMini{height:135px;perspective:900px;cursor:pointer}.flipMiniInner{height:100%;position:relative;transition:transform .55s;transform-style:preserve-3d}.flipMini.turned .flipMiniInner{transform:rotateY(180deg)}.flipSide{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,.15);box-shadow:0 8px 22px rgba(0,0,0,.25);overflow:auto}.flipFront{background:linear-gradient(135deg,rgba(37,99,235,.35),rgba(56,189,248,.18))}.flipBack{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(16,185,129,.30),rgba(250,204,21,.14))}.flipSide b{font-size:15px;color:#fff}.flipSide small{color:#e2e8f0;line-height:1.35}.tapHint{font-size:11px;color:#fde68a!important;margin-top:6px!important}
+.hScroll{display:flex;gap:12px;overflow-x:auto;padding:12px 2px 16px;scroll-snap-type:x mandatory}.scrollCard{min-width:180px;scroll-snap-align:start;border-radius:16px;padding:14px;color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 20px rgba(0,0,0,.2)}.scrollCard h4{font-size:14px;margin-bottom:5px;color:#fff}.scrollCard p{font-size:12px;color:#f8fafc!important;line-height:1.4}.scrollNote{font-size:12px;color:#fef3c7!important;margin-bottom:0!important}
+.bodyMap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:14px 0}.diagram{background:#fff;color:#111;border-radius:18px;padding:14px;min-height:230px;position:relative;overflow:hidden}.diagram h4{color:#111;margin-bottom:8px}.handSvg,.eyeSvg,.footSvg{width:100%;height:180px}.codeBubble{position:absolute;background:#0B1026;color:#fff;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.rwrap{background:rgba(15,23,42,.55);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px;margin-top:10px}.rhead{font-weight:800;color:#FACC15;margin-bottom:8px}.rline{padding:8px 10px;margin:6px 0;border-radius:10px;border-left:4px solid rgba(148,163,184,.55);background:rgba(255,255,255,.06);font-size:12.5px;color:#e8edf5}.rline.good{border-color:var(--emerald);background:rgba(16,185,129,.13)}.rline.bad{border-color:var(--rose);background:rgba(239,68,68,.10)}.rline b{color:#fff}.strategyBox{background:linear-gradient(135deg,rgba(250,204,21,.12),rgba(251,146,60,.09));border:1px solid rgba(250,204,21,.28);border-radius:14px;padding:12px;margin-top:10px}.strategyBox h4{color:#fde68a;margin-bottom:4px}.strategyBox p{color:#fff!important;font-size:13px}.lx>.g>p,.lx .g p{color:#dbeafe}.mnemonic{display:inline-block;background:rgba(250,204,21,.18);border:1px solid rgba(250,204,21,.32);border-radius:999px;padding:3px 9px;color:#fde68a;font-weight:800;font-size:12px;margin:3px}
+
+@media(max-width:600px){.mg{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}.nav button{font-size:10px;padding:5px 8px}.g{padding:14px}}
+@media print{.top{display:none}.sec{display:block!important}.g{break-inside:avoid;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="top"><div class="nav" id="NV"></div><div class="prog" id="PG"></div></div>
+<div class="mo" id="MO"><div class="mb"><button class="mc" onclick="cM()">&times;</button><div id="MC"></div></div></div>
+<div class="sec" id="s0"></div><div class="sec" id="s1"></div><div class="sec" id="s2"></div>
+<div class="sec" id="s3"></div><div class="sec" id="s4"></div><div class="sec" id="s5"></div>
+<div class="sec" id="s6"></div><div class="sec" id="s7"></div><div class="sec" id="s8"></div>
+<script>
+/* === STATE === */
+const S=JSON.parse(localStorage.getItem('ccma')||'{}');
+function ss(){localStorage.setItem('ccma',JSON.stringify(S))}
+if(!S.lc)S.lc=[];if(!S.fc)S.fc={};if(!S.pa)S.pa={};if(!S.ca)S.ca={};if(!S.pf)S.pf={};if(!S.cf)S.cf={};
+let sOn=true;
+const AC=new(window.AudioContext||window.webkitAudioContext)();
+function pC(){if(!sOn)return;let o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(.12,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.25)}
+function pW(){if(!sOn)return;let o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.value=200;o.type='square';g.gain.setValueAtTime(.1,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.25);o.start();o.stop(AC.currentTime+.25)}
+function pF(){if(!sOn)return;let o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.value=600;o.type='triangle';g.gain.setValueAtTime(.06,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.12);o.start();o.stop(AC.currentTime+.12)}
+function conf(){const c=['#FACC15','#38BDF8','#EC4899','#10B981','#8B5CF6','#FB923C','#A3E635'];for(let i=0;i<35;i++){const e=document.createElement('div');e.className='cp';e.style.left=Math.random()*100+'vw';e.style.top='-10px';e.style.background=c[~~(Math.random()*c.length)];e.style.borderRadius=Math.random()>.5?'50%':'2px';e.style.width=(5+Math.random()*7)+'px';e.style.height=e.style.width;e.style.animationDuration=(1.3+Math.random())+'s';e.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),2500)}}
+
+/* === NAV === */
+const tabs=['🗺️ Mission Map','📚 Mini Lessons','🃏 Flashcards','📖 Coding Book','🏥 Insurance Lab','📋 CMS Lab','✏️ Practice','⏱️ Challenge','📊 Dashboard'];
+function bN(){const r=document.getElementById('NV');tabs.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>go(i);b.id='t'+i;r.appendChild(b)});const s=document.createElement('button');s.className='snd on';s.textContent='🔊';s.onclick=()=>{sOn=!sOn;s.className='snd'+(sOn?' on':'');s.textContent=sOn?'🔊':'🔇'};r.appendChild(s)}
+function go(i){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nav button:not(.snd)').forEach(b=>b.classList.remove('on'));document.getElementById('s'+i).classList.add('on');document.getElementById('t'+i).classList.add('on');if(AC.state==='suspended')AC.resume()}
+function uP(){const lc=S.lc.length,fm=Object.values(S.fc).filter(v=>v==='m').length,pa=Object.keys(S.pa).length,pc=Object.values(S.pa).filter(v=>v).length,ca=Object.keys(S.ca).length,cc=Object.values(S.ca).filter(v=>v).length;document.getElementById('PG').innerHTML=`📚 Lessons: <b>${lc}/13</b> &nbsp; 🃏 Mastered: <b>${fm}/${FC.length}</b> &nbsp; ✏️ Practice: <b>${pc}/${pa||'-'}</b> &nbsp; ⏱️ Challenge: <b>${cc}/${ca||'-'}</b>`}
+
+/* === MODAL === */
+function oM(h){document.getElementById('MC').innerHTML=h;document.getElementById('MO').classList.add('show')}
+function cM(){document.getElementById('MO').classList.remove('show')}
+document.getElementById('MO').onclick=e=>{if(e.target.id==='MO')cM()};
+
+/* === QUIZ UTIL === */
+function fmtR(txt){
+ if(!txt)return'';
+ const raw=String(txt).replace(/<br\s*\/?>(?=\s*<b>|\s*[A-D]\s*[:(])/gi,'\n').replace(/<br\s*\/?>/gi,'\n');
+ const parts=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ let out='<div class="rwrap"><div class="rhead">🧠 Rationale: read the clue, then eliminate with a reason</div>';
+ parts.forEach((part,idx)=>{
+   const plain=part.replace(/<[^>]*>/g,'');
+   const isChoice=/^\s*[A-D]\s*[:(]/.test(plain);
+   const good=idx===0 || /correct|yes|right answer/i.test(plain);
+   const bad=isChoice && !good;
+   out+=`<div class="rline ${good?'good':bad?'bad':''}">${part}</div>`;
+ });
+ out+='</div>';
+ return out;
+}
+function cQ(btn,ok,rid){if(btn.classList.contains('dis'))return;const box=btn.closest('.qb');box.querySelectorAll('.ob').forEach(b=>{b.classList.add('dis');const oc=b.getAttribute('onclick')||'';if(oc.includes('true'))b.classList.add('ok')});if(ok){btn.classList.add('ok');pC()}else{btn.classList.add('no');pW()};document.getElementById(rid).classList.add('show')}
+
+/* === MISSION MAP DATA === */
+const MM=[
+{i:'🛡️',l:'Insurance Basics',c:'cb',d:'<h3>🛡️ Insurance Basics</h3><p><b>What it means:</b> Insurance is a contract where a payer covers some or all medical costs in exchange for a premium. Key terms: deductible, copay, coinsurance, out-of-pocket max.</p><p><b>CCMA exam:</b> Expect patient-responsibility math. Know allowed vs billed amount.</p><p><b>Clue words:</b> premium, deductible, copay, coinsurance, allowed amount, patient responsibility</p><p><b>Example:</b> Patient has $500 deductible (paid $300). For a $200 visit, patient pays remaining $200 toward deductible.</p>'},
+{i:'💰',l:'Financial Eligibility',c:'ct',d:'<h3>💰 Financial Eligibility</h3><p><b>What it means:</b> Checking if patient qualifies for sliding-scale fees, charity care, or indigent programs based on income.</p><p><b>CCMA exam:</b> Know that MAs verify eligibility and connect patients with payment options.</p><p><b>Clue words:</b> sliding scale, financial hardship, indigent, income-based</p><p><b>Example:</b> Uninsured patient earning below poverty level gets sliding-scale discount: $150 visit reduced to $30.</p>'},
+{i:'🏛️',l:'Medicare & Medicaid',c:'cp',d:'<h3>🏛️ Medicare & Medicaid</h3><p><b>What it means:</b> Medicare = federal, mainly 65+. Medicaid = federal/state, income-based.</p><p><b>CCMA exam:</b> Know Parts A (hospital), B (outpatient/DME), C (Advantage), D (drugs). Medicaid varies by state.</p><p><b>Clue words:</b> Part A hospital, Part B outpatient, Part D drugs, dual eligible</p><p><b>Example:</b> 68-year-old needs outpatient lab → Medicare Part B.</p>'},
+{i:'🔄',l:'Revenue Cycle',c:'cb',d:'<h3>🔄 Revenue Cycle</h3><p><b>What it means:</b> Complete financial process from scheduling to final payment.</p><p><b>CCMA exam:</b> Know the flow: verify → document → code → submit → adjudicate → post → follow up.</p><p><b>Clue words:</b> eligibility, verification, charge entry, adjudication, remittance</p><p><b>Example:</b> Insurance verified before visit; codes confirmed after documentation; claim submitted to payer.</p>'},
+{i:'🔢',l:'ICD-10-CM Coding',c:'cg',d:'<h3>🔢 ICD-10-CM Diagnosis Coding</h3><p><b>What it means:</b> ICD codes identify WHY the patient was seen — diagnosis/symptom/reason.</p><p><b>CCMA exam:</b> Do NOT code "rule out" as confirmed in outpatient. Code symptoms instead.</p><p><b>Clue words:</b> diagnosis, confirmed, signs, symptoms, rule-out</p><p><b>Example:</b> Provider documents "acute bronchitis" → code the confirmed diagnosis.</p>'},
+{i:'⚙️',l:'CPT Procedure Coding',c:'co',d:'<h3>⚙️ CPT Procedure Coding</h3><p><b>What it means:</b> CPT codes describe WHAT service/procedure was performed.</p><p><b>CCMA exam:</b> CPT must match documentation. Each procedure needs a supporting diagnosis.</p><p><b>Clue words:</b> procedure, service, office visit, E/M level</p><p><b>Example:</b> Established patient office visit for sore throat → CPT E/M code.</p>'},
+{i:'🏷️',l:'Modifiers',c:'ck',d:'<h3>🏷️ Modifiers</h3><p><b>What it means:</b> Modifiers add detail to CPT/HCPCS codes — side, separate service, bilateral, repeat.</p><p><b>CCMA exam:</b> Mod 25 goes on E/M code. Mod 50 = bilateral. RT/LT = side.</p><p><b>Clue words:</b> bilateral (50), right/left (RT/LT), separate E/M (25), distinct (59)</p><p><b>Example:</b> Procedure on both ears → modifier 50.</p>'},
+{i:'📝',l:'Prior Auth & Referrals',c:'ct',d:'<h3>📝 Prior Auth & Referrals</h3><p><b>What it means:</b> Referral = PCP permission for specialist. Prior auth = payer approval before service.</p><p><b>CCMA exam:</b> Authorization ≠ guarantee of payment. HMO/POS need referrals.</p><p><b>Clue words:</b> HMO referral, pre-authorization, approval number</p><p><b>Example:</b> HMO patient needs specialist → verify referral is on file.</p>'},
+{i:'⚠️',l:'ABN & Medical Necessity',c:'cd',d:'<h3>⚠️ ABN & Medical Necessity</h3><p><b>What it means:</b> ABN = Medicare notice BEFORE service that may not be covered.</p><p><b>CCMA exam:</b> ABN is Medicare-only. Must be signed BEFORE service.</p><p><b>Clue words:</b> Medicare, not medically necessary, ABN, advance notice</p><p><b>Example:</b> Medicare patient wants screening that may not be covered → sign ABN first.</p>'},
+{i:'📄',l:'EOB & Payment Posting',c:'cp',d:'<h3>📄 EOB & Payment Posting</h3><p><b>What it means:</b> EOB shows how claim was processed. NOT a bill. Payment posting records amounts in system.</p><p><b>Clue words:</b> allowed amount, patient responsibility, adjustment, write-off</p><p><b>Example:</b> EOB: Billed $200, Allowed $150, Insurance paid $120, Patient owes $30.</p>'},
+{i:'❌',l:'Denials vs Rejections',c:'cr',d:'<h3>❌ Denials vs Rejections vs Appeals</h3><p><b>What it means:</b> Rejection = not processed (data error). Denial = processed but not paid. Appeal = ask to reconsider denial.</p><p><b>Clue words:</b> rejected/not processed, denied/adjudicated, appeal/reconsider</p><p><b>Example:</b> Invalid subscriber ID → rejection. Missing prior auth → denial.</p>'},
+{i:'📊',l:'A/R Aging & Collections',c:'cp',d:'<h3>📊 A/R Aging</h3><p><b>What it means:</b> Tracks unpaid balances by age: 30, 60, 90, 120+ days.</p><p><b>Clue words:</b> aging report, 30/60/90 days, collections, write-off</p><p><b>Example:</b> Insurance balance at 45 days → follow-up call to payer.</p>'},
+{i:'🔒',l:'HIPAA & Release of Info',c:'cn',d:'<h3>🔒 HIPAA & Release of Info</h3><p><b>What it means:</b> HIPAA protects PHI. Share for TPO without authorization. Verify identity before discussing billing.</p><p><b>Clue words:</b> PHI, minimum necessary, authorization, TPO, verify identity</p><p><b>Example:</b> Payer calls for claim info → verify caller, share minimum necessary.</p>'}
+];
+function bMM(){let h='<div class="g"><h2>🗺️ Mission Map</h2><p>Click any topic to explore what it means, clue words, and a mini example.</p></div><div class="mg">';MM.forEach((n,i)=>h+=`<div class="mn ${n.c}" onclick="oM(MM[${i}].d)"><span class="ic">${n.i}</span><span class="lb">${n.l}</span></div>`);h+='</div>';document.getElementById('s0').innerHTML=h}
+
+/* === LESSONS DATA === */
+const LS=[
+{t:'Insurance Fundamentals',i:'🛡️',cl:'var(--royal)',
+c:`<h3>🛡️ Insurance Fundamentals</h3>
+<p><b>Premium:</b> Monthly payment to maintain coverage.</p>
+<p><b>Deductible:</b> Amount patient pays yearly before insurance covers costs. Example: $1,000 deductible = patient pays first $1,000.</p>
+<p><b>Copayment:</b> Fixed amount per visit ($25, $40). Collected at check-in.</p>
+<p><b>Coinsurance:</b> Percentage patient pays after deductible. Example: 20% coinsurance = patient pays 20%, plan pays 80%.</p>
+<p><b>Out-of-Pocket Maximum:</b> Most patient pays per year. After this, plan pays 100%.</p>
+<p><b>Allowed Amount:</b> Maximum payer will pay (negotiated rate). Patient responsibility is based on this, NOT billed amount.</p>
+<p><b>Billed Amount:</b> What the provider charges (often higher than allowed).</p>
+<p><b>EOB:</b> Payer statement showing how claim was processed. NOT a bill.</p>
+<p><b>Third-Party Payer:</b> Entity other than patient/provider that pays (insurance company, Medicare, Medicaid).</p>
+<p><b>Coordination of Benefits:</b> When patient has 2+ plans, COB determines which pays first (primary) and second (secondary).</p>
+<div class="ec"><h4 style="color:var(--gold)">💡 Math Example</h4><p>Billed: $500 | Allowed: $350 | Deductible remaining: $100 | Coinsurance: 20%</p><div class="er"><span>Patient pays deductible</span><span>$100</span></div><div class="er"><span>Remaining: $350-$100</span><span>$250</span></div><div class="er"><span>Patient coinsurance: 20% × $250</span><span>$50</span></div><div class="er"><span>Insurance pays: 80% × $250</span><span>$200</span></div><div class="er"><span>Contractual adjustment: $500-$350</span><span>$150</span></div><div class="er tot"><span>Patient total</span><span>$150</span></div></div>
+<div class="ib ex"><h4>📝 Exam Tip</h4><p>Calculate patient responsibility from the ALLOWED amount, not billed. The difference between billed and allowed is a contractual adjustment.</p></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>Do not confuse billed with allowed amount. Patient responsibility is always based on the allowed amount.</p></div>`,
+q:{q:'Patient has $2,000 deductible, paid $1,800. Allowed amount: $300. Coinsurance: 20%. What does patient owe?',o:['$200','$260','$300','$60'],a:1,r:'<b>B ($260).</b> Remaining deductible: $2,000-$1,800=$200. Patient pays $200 deductible. Remaining: $300-$200=$100. Coinsurance: 20%×$100=$20. Total: $200+$20=$260.<br><b>A:</b> Only the deductible, ignoring coinsurance.<br><b>C:</b> Full allowed—insurance covers its share.<br><b>D:</b> 20% of $300, ignoring deductible.'}},
+{t:'Plan Types',i:'📋',cl:'var(--teal)',
+c:`<h3>📋 Plan Types</h3>
+<p><b>HMO:</b> Requires PCP, referrals for specialists. No out-of-network except emergencies. Lower cost.</p>
+<p><b>PPO:</b> No referral needed. In-network and out-of-network coverage. Out-of-network costs more. Higher premiums.</p>
+<p><b>EPO:</b> No referrals. In-network ONLY (except emergencies). "Exclusive."</p>
+<p><b>POS:</b> Combines HMO+PPO. Needs PCP and referrals, but some out-of-network access at higher cost.</p>
+<p><b>HDHP:</b> High deductible, low premiums. Often paired with HSA.</p>
+<p><b>Medicare:</b> Federal, primarily 65+ or qualifying disabilities.</p>
+<p><b>Medicaid:</b> Federal/state, income-based. Varies by state.</p>
+<p><b>Workers' Comp:</b> Covers work-related injuries. Employer pays premiums.</p>
+<div class="g" style="background:rgba(20,184,166,.08)"><h4>🧭 Decision Chart</h4>
+<div class="dc2"><b>→</b><span>Needs referral for specialist → <b>HMO or POS</b></span></div>
+<div class="dc2"><b>→</b><span>Wants out-of-network flexibility → <b>PPO</b></span></div>
+<div class="dc2"><b>→</b><span>No out-of-network except emergencies, no referral → <b>EPO</b></span></div>
+<div class="dc2"><b>→</b><span>High deductible before coverage → <b>HDHP</b></span></div>
+<div class="dc2"><b>→</b><span>Injured at work → <b>Workers' Comp</b></span></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>EPO and HMO both restrict out-of-network, but EPO does NOT require referrals. HMO does.</p></div>`,
+q:{q:'Patient has EPO and wants out-of-network specialist. Most accurate statement?',o:['Covered at higher out-of-network rate','Must get PCP referral first','EPO will not cover except emergencies','Patient should switch to HMO'],a:2,r:'<b>C.</b> EPO = Exclusive = in-network only except emergencies.<br><b>A:</b> Describes PPO.<br><b>B:</b> EPOs do not require referrals.<br><b>D:</b> HMOs also restrict out-of-network.'}},
+{t:'Medicare & Medicaid',i:'🏛️',cl:'var(--purple)',
+c:`<h3>🏛️ Medicare & Medicaid</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0">
+<div class="g" style="border-left:3px solid var(--royal)"><h4 style="color:var(--royal)">Part A — Hospital</h4><p>Inpatient hospital, skilled nursing, hospice, home health.</p></div>
+<div class="g" style="border-left:3px solid var(--teal)"><h4 style="color:var(--teal)">Part B — Outpatient</h4><p>Outpatient/provider services, preventive, DME, labs.</p></div>
+<div class="g" style="border-left:3px solid var(--purple)"><h4 style="color:var(--purple)">Part C — Advantage</h4><p>Private plan bundling A+B (often D). Extra benefits possible.</p></div>
+<div class="g" style="border-left:3px solid var(--pink)"><h4 style="color:var(--pink)">Part D — Drugs</h4><p>Prescription drug coverage. Tier levels affect cost.</p></div>
+<div class="g" style="border-left:3px solid var(--emerald)"><h4 style="color:var(--emerald)">Medicaid</h4><p>Federal/state, income-based. Eligibility varies by state.</p></div>
+<div class="g" style="border-left:3px solid var(--gold)"><h4 style="color:var(--gold)">Dual Eligible</h4><p>Has both Medicare + Medicaid. Medicare pays first.</p></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>DME (wheelchairs, walkers) = Part B, NOT Part D. Part D = drugs only.</p></div>`,
+q:{q:'Medicare patient needs wheelchair for home use. Which part covers DME?',o:['Part A','Part B','Part C','Part D'],a:1,r:'<b>B.</b> Part B covers outpatient services including DME.<br><b>A:</b> Part A = inpatient.<br><b>C:</b> Part C bundles A+B via private plan; underlying benefit is Part B.<br><b>D:</b> Part D = drugs only.'}},
+{t:'Revenue Cycle',i:'🔄',cl:'var(--sky)',
+c:`<h3>🔄 Revenue Cycle Flow</h3><p>The complete financial journey from scheduling through final payment.</p>
+<div class="ft" id="rf"></div><div class="g" id="rd" style="min-height:60px"><p style="color:var(--dim)">Click any step above to see details.</p></div>
+<div class="ib ex"><h4>📝 Exam Tip</h4><p>Insurance eligibility should be verified BEFORE the patient is seen.</p></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>Errors at the front end (wrong insurance, missing referral) cause problems at every later step.</p></div>`,
+q:{q:'When should insurance eligibility be verified?',o:['After claim submission','After the visit but before coding','Before the patient visit','Only when a claim is denied'],a:2,r:'<b>C.</b> Verify before the visit to confirm active coverage.<br><b>A:</b> Too late — denial risk.<br><b>B:</b> Still too late.<br><b>D:</b> Reactive, not proactive.'}},
+{t:'ICD-10-CM Coding',i:'🔢',cl:'var(--emerald)',
+c:`<h3>🔢 ICD-10-CM Diagnosis Coding</h3>
+<p>ICD-10-CM codes identify <b>WHY</b> the patient was seen — diagnosis, condition, symptom, reason.</p>
+<p>• Confirmed diagnosis documented → code the diagnosis.</p>
+<p>• No confirmed diagnosis → code signs/symptoms.</p>
+<p>• <b>Outpatient: Do NOT code "rule out" as confirmed.</b> Code symptoms instead.</p>
+<p>• Code to highest specificity (laterality, type, episode).</p>
+<div class="ib ex"><h4>📝 Exam Tip</h4><p>"Rule out," "possible," "probable," "suspected" → NOT confirmed in outpatient. Code presenting symptoms.</p></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>If provider documents confirmed diagnosis, do NOT also code integral symptoms of that diagnosis separately.</p></div>`,
+q:{q:'Provider documents "rule out pneumonia." Patient has cough and fever. What should be coded?',o:['Pneumonia','Cough and fever','Both','No code needed'],a:1,r:'<b>B.</b> "Rule out" = not confirmed in outpatient. Code symptoms: cough and fever.<br><b>A:</b> Not confirmed.<br><b>C:</b> Only symptoms.<br><b>D:</b> Every encounter needs a code.'}},
+{t:'CPT Procedure Coding',i:'⚙️',cl:'var(--orange)',
+c:`<h3>⚙️ CPT Procedure Coding</h3>
+<p>CPT codes describe <b>WHAT</b> service/procedure was performed.</p>
+<p>CPT = "What did the provider do?" | ICD = "Why did they do it?"</p>
+<p>Every CPT must link to a supporting ICD diagnosis (medical necessity).</p>
+<p><b>Coding steps:</b> 1) Identify main term → 2) Check subterms → 3) Find code range → 4) Read notes → 5) Confirm match → 6) Check if modifier needed.</p>
+<div class="ib wk"><h4>🏢 Workplace</h4><p>If documentation is unclear, ask the provider to clarify BEFORE submitting the claim. "If it wasn't documented, it wasn't done."</p></div>`,
+q:{q:'Rapid strep test performed during office visit. What code type reports the test?',o:['ICD-10-CM','CPT','HCPCS Level II','Modifier'],a:1,r:'<b>B.</b> The strep test is a procedure → CPT.<br><b>A:</b> ICD = diagnosis/reason.<br><b>C:</b> HCPCS = supplies/DME.<br><b>D:</b> Modifier adds detail to a code, not standalone.'}},
+{t:'ICD vs CPT vs HCPCS',i:'🔀',cl:'var(--gold)',
+c:`<h3>🔀 ICD vs CPT vs HCPCS</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0">
+<div class="g" style="border-top:3px solid var(--emerald);text-align:center"><p style="font-size:36px">🔢</p><h4 style="color:var(--emerald)">ICD = WHY</h4><p>Diagnosis/condition/symptom</p><p style="font-size:11px;color:var(--dim)">Diabetes → ICD</p></div>
+<div class="g" style="border-top:3px solid var(--orange);text-align:center"><p style="font-size:36px">⚙️</p><h4 style="color:var(--orange)">CPT = WHAT</h4><p>Service/procedure performed</p><p style="font-size:11px;color:var(--dim)">Office visit → CPT</p></div>
+<div class="g" style="border-top:3px solid var(--pink);text-align:center"><p style="font-size:36px">🏷️</p><h4 style="color:var(--pink)">HCPCS II = SUPPLY</h4><p>DME, supplies, drugs, ambulance</p><p style="font-size:11px;color:var(--dim)">Wheelchair → HCPCS</p></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>HCPCS ≠ CPT. Wheelchair = HCPCS. Injection procedure = CPT. Drug in injection = may be HCPCS.</p></div>`,
+q:{q:'Patient receives crutches after ankle sprain. Which code set reports the crutches?',o:['ICD-10-CM','CPT','HCPCS Level II','Modifier'],a:2,r:'<b>C.</b> Crutches = DME = HCPCS Level II.<br><b>A:</b> ICD = the ankle sprain diagnosis.<br><b>B:</b> CPT = procedures.<br><b>D:</b> Modifier adds detail to a code.'}},
+{t:'Modifiers',i:'🏷️',cl:'var(--pink)',
+c:`<h3>🏷️ Modifiers</h3><p>Modifiers add specific info to CPT/HCPCS codes without changing the basic meaning.</p>
+<table class="mt"><tr><th>Mod</th><th>Meaning</th></tr>
+<tr><td><b>25</b></td><td>Significant separate E/M on same day as procedure (goes on E/M code)</td></tr>
+<tr><td><b>59</b></td><td>Distinct procedural service (separate/independent procedures)</td></tr>
+<tr><td><b>50</b></td><td>Bilateral (both sides)</td></tr>
+<tr><td><b>52</b></td><td>Reduced services</td></tr>
+<tr><td><b>76</b></td><td>Repeat procedure, same provider</td></tr>
+<tr><td><b>77</b></td><td>Repeat procedure, different provider</td></tr>
+<tr><td><b>RT/LT</b></td><td>Right side / Left side</td></tr></table>
+<h4>Anatomical Modifiers</h4>
+<table class="mt"><tr><th>Eyelids</th><th></th></tr><tr><td>E1</td><td>Upper left</td></tr><tr><td>E2</td><td>Lower left</td></tr><tr><td>E3</td><td>Upper right</td></tr><tr><td>E4</td><td>Lower right</td></tr></table>
+<table class="mt"><tr><th>Fingers</th><th>Left</th><th>Right</th></tr>
+<tr><td>Thumb</td><td>FA</td><td>F5</td></tr><tr><td>Index</td><td>F1</td><td>F6</td></tr><tr><td>Middle</td><td>F2</td><td>F7</td></tr><tr><td>Ring</td><td>F3</td><td>F8</td></tr><tr><td>Small</td><td>F4</td><td>F9</td></tr></table>
+<table class="mt"><tr><th>Toes</th><th>Left</th><th>Right</th></tr>
+<tr><td>Great</td><td>TA</td><td>T5</td></tr><tr><td>2nd</td><td>T1</td><td>T6</td></tr><tr><td>3rd</td><td>T2</td><td>T7</td></tr><tr><td>4th</td><td>T3</td><td>T8</td></tr><tr><td>5th</td><td>T4</td><td>T9</td></tr></table>
+<h4>🖐️ Interactive Modifier Finder</h4><p>Click any body part:</p><div id="mf"></div><div id="mr" style="margin-top:8px;min-height:24px"></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>Modifier 25 goes on the E/M code, NOT the procedure. Modifier 59 is for procedures, not E/M.</p></div>`,
+q:{q:'Provider does skin biopsy + significant separate E/M same day. Which modifier on the E/M?',o:['59','25','50','76'],a:1,r:'<b>B (25).</b> Modifier 25 = significant separate E/M on same day as procedure. Goes on E/M code.<br><b>A (59):</b> Distinct procedural service, not for E/M.<br><b>C (50):</b> Bilateral.<br><b>D (76):</b> Repeat procedure.'}},
+{t:'Referrals & Prior Auth',i:'📝',cl:'var(--teal)',
+c:`<h3>📝 Referrals, Prior Auth & Precertification</h3>
+<p><b>Referral:</b> PCP order/permission to see specialist. Required by HMO and POS.</p>
+<p><b>Prior Authorization:</b> Payer approval BEFORE service (imaging, DME, surgery, meds).</p>
+<p><b>Precertification:</b> Advance confirmation service meets payer requirements.</p>
+<p><b>Key:</b> Authorization is NOT a guarantee of payment.</p>
+<div class="g" style="background:rgba(20,184,166,.06)"><h4>🌳 Decision Tree</h4>
+<div class="dc2"><b>→</b><span>HMO + specialist → <b>Referral likely needed</b></span></div>
+<div class="dc2"><b>→</b><span>MRI ordered → <b>Prior auth likely needed</b></span></div>
+<div class="dc2"><b>→</b><span>DME (CPAP, wheelchair) → <b>Prior auth may be needed</b></span></div>
+<div class="dc2"><b>→</b><span>Rx not on formulary → <b>Prior auth or alternative needed</b></span></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>Prior authorization does NOT guarantee payment. PPOs typically do NOT require referrals.</p></div>`,
+q:{q:'Provider orders MRI for PPO patient. What should MA verify before scheduling?',o:['PCP referral','Prior authorization from payer','Out-of-pocket maximum','Switch to HMO'],a:1,r:'<b>B.</b> Many payers require prior auth for MRIs regardless of plan type.<br><b>A:</b> PPOs do not require referrals.<br><b>C:</b> OOP max affects cost, not auth requirement.<br><b>D:</b> Switching plans is not an MA action.'}},
+{t:'ABN & Medical Necessity',i:'⚠️',cl:'var(--gold)',
+c:`<h3>⚠️ ABN & Medical Necessity</h3>
+<p><b>ABN:</b> Advanced Beneficiary Notice — given to <b>Medicare</b> patient BEFORE service that Medicare may not cover because it may not be medically necessary.</p>
+<p>• Must be given BEFORE the service</p>
+<p>• Medicare-specific (not for commercial plans)</p>
+<p>• Patient decides whether to proceed knowing they may pay</p>
+<p><b>Medical Necessity:</b> Payer requires service be reasonable and necessary for the diagnosis/treatment.</p>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>ABN = Medicare ONLY. Must be signed BEFORE the service, not after.</p></div>`,
+q:{q:'When must an ABN be presented to a Medicare patient?',o:['After service and denial','Before service when Medicare may not cover it','Only when patient requests','For commercial PPO plans'],a:1,r:'<b>B.</b> ABN must be given BEFORE so patient can decide.<br><b>A:</b> After defeats the purpose.<br><b>C:</b> Provider initiates it, not patient.<br><b>D:</b> ABN = Medicare only.'}},
+{t:'Denials vs Rejections',i:'❌',cl:'var(--rose)',
+c:`<h3>❌ Denials vs Rejections vs Appeals</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0">
+<div class="g" style="border-top:3px solid var(--orange)"><h4 style="color:var(--orange)">Rejection</h4><p>Claim NOT processed. Failed front-end edits (invalid ID, missing DOB). Fix and resubmit.</p></div>
+<div class="g" style="border-top:3px solid var(--rose)"><h4 style="color:var(--rose)">Denial</h4><p>Payer processed but refused to pay (no auth, not necessary, non-covered). May need appeal.</p></div>
+<div class="g" style="border-top:3px solid var(--purple)"><h4 style="color:var(--purple)">Appeal</h4><p>Formal request to reconsider denial. Include supporting documentation within deadline.</p></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>Rejection = not processed (fix & resubmit). Denial = processed but not paid (may appeal). Do NOT confuse them.</p></div>`,
+q:{q:'Claim returned because patient DOB is blank. This is a:',o:['Denial','Appeal','Rejection','Write-off'],a:2,r:'<b>C.</b> Missing data = front-end error = rejection. Never reached processing.<br><b>A:</b> Denial = payer processed and refused.<br><b>B:</b> Appeal responds to denial.<br><b>D:</b> Write-off = accounting adjustment.'}},
+{t:'EOB, Posting & A/R Aging',i:'📄',cl:'var(--purple)',
+c:`<h3>📄 EOB, Payment Posting & A/R Aging</h3>
+<p><b>EOB:</b> Payer statement of how claim was processed. NOT a bill. Shows billed, allowed, paid, adjustments, patient responsibility.</p>
+<p><b>Payment Posting:</b> Recording payments, adjustments, and patient balances from EOB/remittance advice.</p>
+<p><b>A/R Aging:</b> Tracks unpaid balances: 0-30, 31-60, 61-90, 91-120, 120+ days.</p>
+<p><b>Contractual Adjustment:</b> Difference between billed and allowed — patient does NOT pay this.</p>
+<div class="ec"><h4 style="color:var(--purple)">💰 EOB Math Lab</h4><p>Billed: $200 | Allowed: $120 | Deductible remaining: $50 | Coinsurance: 20%</p>
+<div class="er"><span>Patient pays deductible</span><span>$50</span></div><div class="er"><span>Remaining: $120-$50</span><span>$70</span></div><div class="er"><span>Coinsurance: 20%×$70</span><span>$14</span></div><div class="er"><span>Insurance pays: 80%×$70</span><span>$56</span></div><div class="er"><span>Contractual adj: $200-$120</span><span>$80</span></div><div class="er tot"><span>Patient total</span><span>$64</span></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>EOB ≠ bill. The EOB is from the payer. The bill/statement is from the provider office.</p></div>`,
+q:{q:'Billed $300, Allowed $200, Deductible $0 remaining, Coinsurance 20%. Patient owes?',o:['$60','$40','$100','$300'],a:1,r:'<b>B ($40).</b> Deductible met. 20%×$200=$40.<br><b>A ($60):</b> 20% of billed ($300), not allowed.<br><b>C ($100):</b> Contractual adjustment, not patient cost.<br><b>D:</b> Patient never pays full billed with insurance.'}},
+{t:'HIPAA & Billing Communication',i:'🔒',cl:'var(--lavender)',
+c:`<h3>🔒 HIPAA, Release of Info & Communication</h3>
+<p><b>PHI:</b> Any individually identifiable health info (name, DOB, diagnosis, billing, insurance).</p>
+<p><b>Minimum Necessary:</b> Share only what is needed for the purpose.</p>
+<p><b>TPO:</b> PHI may be shared for Treatment, Payment, Operations without specific authorization.</p>
+<p><b>Release of Info:</b> Sharing outside TPO requires patient authorization.</p>
+<p><b>HITECH:</b> Strengthened HIPAA enforcement, breach notifications, penalties.</p>
+<p><b>Rules:</b> Verify identity before discussing billing by phone. Do not discuss PHI in public areas. Family members need authorization unless designated.</p>
+<div class="g" style="background:rgba(11,16,38,.3)"><h4>📞 Scenarios</h4>
+<p><b>Spouse calls about bill:</b> Check authorization on file. If none, cannot share.</p>
+<p><b>Payer requests records for claim:</b> Verify caller. Share minimum necessary (TPO permitted).</p>
+<p><b>Patient upset about denial:</b> Verify identity. Calmly explain denial, options (appeal), offer escalation.</p></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>TPO allows sharing with payers without authorization, but sharing with family/employers generally requires authorization.</p></div>`,
+q:{q:'Payer rep calls requesting clinical notes for a claim. Under HIPAA, what should you do?',o:['Refuse all sharing','Verify caller and send only relevant records','Share entire medical record','Require patient to sign authorization first'],a:1,r:'<b>B.</b> Sharing with payer for payment = TPO = permitted. Verify caller, apply minimum necessary.<br><b>A:</b> Overly restrictive; TPO permits this.<br><b>C:</b> Violates minimum necessary.<br><b>D:</b> Unnecessary; TPO covers payer payment requests.'}},
+];
+
+/* === LESSON BUILDER === */
+const lColors=['var(--royal)','var(--teal)','var(--purple)','var(--sky)','var(--emerald)','var(--orange)','var(--gold)','var(--pink)','var(--teal)','var(--gold)','var(--rose)','var(--purple)','var(--lavender)'];
+function bL(){let h='<div class="g"><h2>📚 Mini Lessons</h2><p>Click to expand. Each has explanations, exam tips, traps, and a concept check.</p></div>';
+LS.forEach((l,i)=>{h+=`<div class="lc" onclick="tL(${i})"><div class="nm" style="background:${lColors[i]}">${i+1}</div><div><b>${l.i} ${l.t}</b></div></div><div class="lx" id="l${i}"><div class="g">${l.c}<div id="lq${i}"></div></div></div>`});
+document.getElementById('s1').innerHTML=h}
+function tL(i){const e=document.getElementById('l'+i);const s=e.classList.contains('show');document.querySelectorAll('.lx').forEach(x=>x.classList.remove('show'));if(!s){e.classList.add('show');if(!S.lc.includes(i)){S.lc.push(i);ss();uP()}const l=LS[i];if(l.q){document.getElementById('lq'+i).innerHTML=`<div class="qb"><div class="qt">${l.q.q}</div>${l.q.o.map((o,j)=>`<button class="ob" onclick="cQ(this,${l.q.a===j},'lr${i}')">${'ABCD'[j]}. ${o}</button>`).join('')}<div class="rt" id="lr${i}">${fmtR(l.q.r)}</div></div>`}if(i===3)bRF();if(i===7)bMF()}}
+
+/* Revenue Flow */
+const RS=['Scheduled','Insurance Verified','Eligibility Checked','Auth/Referral','Patient Seen','Provider Documents','Codes Confirmed','Claim Submitted','Payer Adjudicates','EOB Received','Payment Posted','Patient Billed','Denial/Appeal','A/R Follow-up'];
+const RD=['Insurance info collected.','Check active coverage, plan type, copay.','Confirm benefits for service. Check deductible.','Verify prior auth or referral needed.','Services provided. Collect copay.','Clinical documentation completed.','ICD + CPT codes confirmed against documentation.','Claim sent to clearinghouse → payer.','Payer decides: pay, deny, or pend.','Shows what was paid, adjusted, owed.','Record payments, adjustments, balances.','Send patient statement for their portion.','If denied: review, correct, or appeal.','Track aging. Follow up on unpaid.'];
+function bRF(){const c=document.getElementById('rf');if(!c)return;c.innerHTML=RS.map((s,i)=>`<div class="fs" style="background:${['rgba(37,99,235,.20)','rgba(56,189,248,.20)','rgba(20,184,166,.20)','rgba(250,204,21,.20)','rgba(251,146,60,.20)','rgba(139,92,246,.20)','rgba(16,185,129,.20)','rgba(236,72,153,.20)'][i%8]}" onclick="sRD(${i})">${s}</div>${i<RS.length-1?'<span class="fa2">→</span>':''}`).join('')}
+function sRD(i){document.querySelectorAll('.fs').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.fs')[i].classList.add('on');document.getElementById('rd').innerHTML=`<h4>${RS[i]}</h4><p>${RD[i]}</p>`}
+
+/* Modifier Finder */
+const MD={'Left Thumb':'FA','Left Index':'F1','Left Middle':'F2','Left Ring':'F3','Left Pinky':'F4','Right Thumb':'F5','Right Index':'F6','Right Middle':'F7','Right Ring':'F8','Right Pinky':'F9','Left Great Toe':'TA','Left 2nd Toe':'T1','Left 3rd Toe':'T2','Left 4th Toe':'T3','Left 5th Toe':'T4','Right Great Toe':'T5','Right 2nd Toe':'T6','Right 3rd Toe':'T7','Right 4th Toe':'T8','Right 5th Toe':'T9','Upper Left Eyelid':'E1','Lower Left Eyelid':'E2','Upper Right Eyelid':'E3','Lower Right Eyelid':'E4','Right Side':'RT','Left Side':'LT'};
+function bMF(){const c=document.getElementById('mf');if(!c)return;c.innerHTML=Object.keys(MD).map(k=>`<button class="db" onclick="this.classList.add('sel');document.getElementById('mr').innerHTML='<b style=color:var(--pink)>${MD[k]} — ${k}</b>'">${k}</button>`).join('')}
+
+/* === FLASHCARDS === */
+const FC=[
+// Insurance (10)
+{c:'Insurance',f:'Deductible',b:'Amount patient pays yearly before insurance covers costs.',q:'Patient has $500 deductible, paid $0. Visit allowed $200. Patient owes?',o:['$0','$200','$40','$500'],a:1,r:'B: Full $200 applies to unmet deductible.'},
+{c:'Insurance',f:'Copayment',b:'Fixed dollar amount per visit ($25, $40). Collected at check-in.',q:'A copayment is:',o:['Percentage of allowed','Fixed amount per visit','Annual deductible','Monthly premium'],a:1,r:'B: Copays are fixed amounts. A=coinsurance. C=deductible. D=premium.'},
+{c:'Insurance',f:'Coinsurance',b:'Percentage of allowed amount patient pays after deductible. Example: 20% coinsurance.',q:'20% coinsurance on $400 allowed. Patient pays:',o:['$80','$400','$320','$20'],a:0,r:'A: 20%×$400=$80. B=full amount. C=insurance share. D=5%.'},
+{c:'Insurance',f:'OOP Maximum',b:'Most patient pays per year. After this, plan pays 100% of covered services.',q:'After reaching OOP max:',o:['Must change plans','Insurance pays 100%','Copays double','Deductible resets'],a:1,r:'B: Plan covers 100% after OOP max.'},
+{c:'Insurance',f:'Allowed Amount',b:'Maximum payer will pay for a service. Patient responsibility is based on this, NOT billed amount.',q:'Billed $300, Allowed $200. Contractual adjustment:',o:['$300','$200','$100','$0'],a:2,r:'C: $300-$200=$100 adjustment.'},
+{c:'Insurance',f:'EOB',b:'Payer explanation of how claim was processed. NOT a bill. Shows paid, adjusted, patient owes.',q:'An EOB is:',o:['A bill from provider','Payer explanation of claim processing','A referral form','A prescription'],a:1,r:'B: EOB explains processing. A=provider sends bills.'},
+{c:'Insurance',f:'Medical Necessity',b:'Payer requires service be reasonable and necessary for diagnosis/treatment.',q:'"Not medically necessary" denial means:',o:['Service done wrong','Payer says service not reasonable for diagnosis','Patient refused','Provider not credentialed'],a:1,r:'B: Payer determines service not justified for condition.'},
+{c:'Insurance',f:'Premium',b:'Monthly cost to maintain coverage. Paid whether or not services are used.',q:'A premium is:',o:['Amount before insurance covers','Monthly coverage cost','Percentage of allowed','Per-visit fee'],a:1,r:'B: Regular payment for coverage. A=deductible. C=coinsurance. D=copay.'},
+{c:'Insurance',f:'Third-Party Payer',b:'Entity other than patient/provider that pays — insurance companies, Medicare, Medicaid.',q:'Third-party payer example:',o:['Patient paying copay','Insurance company paying claim','Provider writing off balance','Patient employer'],a:1,r:'B: Insurance company is third party. A=patient is first party.'},
+{c:'Insurance',f:'COB',b:'Coordination of Benefits: when patient has 2+ plans, determines which pays first (primary) and second (secondary).',q:'COB determines:',o:['Which provider to see','Which plan pays first/second','Copay amount','Referral need'],a:1,r:'B: COB sets payment order. Primary first, secondary after.'},
+// Medicare (8)
+{c:'Medicare',f:'Part A',b:'Inpatient hospital, skilled nursing, hospice, home health.',q:'Part A covers:',o:['Drugs','Outpatient labs','Inpatient hospital','DME'],a:2,r:'C: Part A = inpatient. A=Part D. B/D=Part B.'},
+{c:'Medicare',f:'Part B',b:'Outpatient services, provider visits, preventive, DME, labs.',q:'Walker for home use = which Part?',o:['A','B','C','D'],a:1,r:'B: DME = Part B.'},
+{c:'Medicare',f:'Part C',b:'Medicare Advantage — private plan combining A+B. May include D and extras.',q:'Part C is:',o:['Drug coverage','Private plan bundling A+B','Supplemental dental only','Medicaid'],a:1,r:'B: Part C = private plan combining A+B.'},
+{c:'Medicare',f:'Part D',b:'Prescription drug coverage. Tier levels affect patient cost.',q:'Part D tier levels affect:',o:['Hospital copay','Medication cost to patient','DME coverage','Specialist network'],a:1,r:'B: Tier levels determine prescription costs.'},
+{c:'Medicare',f:'Medicaid',b:'Federal/state, income-based. Eligibility varies by state.',q:'Medicaid eligibility is based on:',o:['Age 65+','Income/resources','Employment only','Disability only'],a:1,r:'B: Income/resource-based. A=primarily Medicare.'},
+{c:'Medicare',f:'Dual Eligible',b:'Has both Medicare + Medicaid. Medicare = primary.',q:'Dual eligible: which is primary?',o:['Medicaid','Medicare','Patient chooses','Lower deductible'],a:1,r:'B: Medicare primary, Medicaid secondary.'},
+{c:'Medicare',f:'ABN',b:'Medicare notice BEFORE service that may not be covered. Patient informed of potential responsibility.',q:'ABN is used with:',o:['HMO','PPO','Medicare','Workers comp'],a:2,r:'C: ABN = Medicare specific.'},
+{c:'Medicare',f:'CMS',b:'Federal agency administering Medicare, Medicaid, CHIP. Sets billing/documentation requirements.',q:'CMS administers:',o:['Only commercial','Medicare & Medicaid','Only workers comp','Only VA'],a:1,r:'B: CMS oversees Medicare, Medicaid, CHIP.'},
+// Revenue (8)
+{c:'Revenue Cycle',f:'Clean Claim',b:'Claim with all required fields complete and correct. Processed faster.',q:'Clean claim means:',o:['Paid in full','All data complete and correct','Denied and corrected','No patient responsibility'],a:1,r:'B: Clean = complete/correct for submission.'},
+{c:'Revenue Cycle',f:'Clearinghouse',b:'Intermediary that checks claims for errors and forwards to payers.',q:'Clearinghouse primary function:',o:['Pay claims','Screen claims for errors before payers','Provide care','Issue prior auth'],a:1,r:'B: Clearinghouses check for errors and route claims.'},
+{c:'Revenue Cycle',f:'Adjudication',b:'Payer reviews and determines payment for claim. Pay, deny, or pend.',q:'Adjudication is:',o:['Patient paying copay','Payer processing and deciding on claim','Provider documenting','Clearinghouse formatting'],a:1,r:'B: Adjudication = payer review and decision.'},
+{c:'Revenue Cycle',f:'Timely Filing',b:'Deadline for claim submission after date of service. Missing usually = non-reversible denial.',q:'Missing timely filing deadline:',o:['Reduced rate','Denial, usually non-appealable','Auto patient bill','Clearinghouse resubmits'],a:1,r:'B: Timely filing miss = typically final denial.'},
+{c:'Revenue Cycle',f:'POS Code',b:'Place of service code: 11=office, 21=inpatient, 22=outpatient hospital, 23=ER.',q:'POS 11 =',o:['Inpatient hospital','Provider office','ER','SNF'],a:1,r:'B: 11 = office. 21=inpatient. 23=ER.'},
+{c:'Revenue Cycle',f:'Diagnosis Pointer',b:'Links procedure line to ICD diagnosis supporting medical necessity.',q:'Diagnosis pointer connects:',o:['Patient to plan','Procedure to supporting diagnosis','Copay to deductible','Payer to clearinghouse'],a:1,r:'B: Pointer links CPT line to ICD diagnosis.'},
+{c:'Revenue Cycle',f:'Charge Reconciliation',b:'Matching documented services to charges, payments, and adjustments.',q:'Charge reconciliation involves:',o:['Only copay collection','Matching documentation to charges and payments','Scheduling','Referral requests'],a:1,r:'B: Reconciliation = matching docs to charges/payments.'},
+{c:'Revenue Cycle',f:'Remittance Advice',b:'From payer to provider showing how claims were processed. Provider version of EOB.',q:'RA is sent to:',o:['Patient','Provider office','Clearinghouse','Employer'],a:1,r:'B: RA goes to provider. EOB goes to patient.'},
+// ICD (8)
+{c:'ICD-10-CM',f:'ICD = WHY',b:'ICD codes identify WHY patient was seen — diagnosis/symptom/reason.',q:'ICD answers:',o:['What procedure?','Why was patient seen?','Where was service?','Who performed?'],a:1,r:'B: ICD = why/diagnosis.'},
+{c:'ICD-10-CM',f:'Rule-Out (Outpatient)',b:'In outpatient, do NOT code rule-out as confirmed. Code symptoms instead.',q:'"Rule out diabetes" outpatient → code:',o:['Diabetes confirmed','Presenting symptoms','No code','Rule-out modifier'],a:1,r:'B: Code symptoms in outpatient rule-out.'},
+{c:'ICD-10-CM',f:'Highest Specificity',b:'Code to most detailed level documented: laterality, type, episode.',q:'Highest specificity means:',o:['Shortest code','Include all documented details','Add undocumented details','Three-character only'],a:1,r:'B: Include all documented specifics.'},
+{c:'ICD-10-CM',f:'Primary Diagnosis',b:'Main reason for THIS encounter. Not always the most severe condition.',q:'Primary diagnosis is:',o:['Most chronic condition','Main reason for current encounter','Most expensive','Highest reimbursement'],a:1,r:'B: Primary = reason for THIS visit.'},
+{c:'ICD-10-CM',f:'Z Codes',b:'Encounters not for diseases — screenings, vaccines, follow-ups, history, administrative.',q:'Annual physical, no complaints. Primary code type?',o:['Symptom','Z code for routine exam','Injury','No code needed'],a:1,r:'B: Z codes for preventive/routine encounters.'},
+{c:'ICD-10-CM',f:'Laterality',b:'Many codes require specifying right, left, or bilateral.',q:'"Left ankle sprain" code should specify:',o:['Unspecified','Right','Left','Bilateral'],a:2,r:'C: Documentation says LEFT, code LEFT.'},
+{c:'ICD-10-CM',f:'Signs vs Symptoms',b:'Sign = objective (provider observes). Symptom = subjective (patient reports). Code confirmed diagnosis when available.',q:'Patient reports headache. Provider confirms migraine. Code:',o:['Both','Headache only','Migraine only','Neither'],a:2,r:'C: Code confirmed diagnosis. Headache is integral to migraine.'},
+{c:'ICD-10-CM',f:'External Cause Codes',b:'Describe HOW/WHERE injury occurred. Never primary. Supplementary context.',q:'External cause codes describe:',o:['Diagnosis','How/where injury occurred','Procedure','Insurance type'],a:1,r:'B: External cause = mechanism/place of injury.'},
+// CPT (8)
+{c:'CPT/HCPCS',f:'CPT = WHAT',b:'CPT describes WHAT service/procedure was performed.',q:'CPT answers:',o:['Why seen?','What was performed?','Where?','Who is payer?'],a:1,r:'B: CPT = what service/procedure.'},
+{c:'CPT/HCPCS',f:'E/M Codes',b:'Evaluation and Management: office visits (new/established), hospital visits. Level based on complexity or time.',q:'Established patient = seen within past:',o:['1 year','3 years by same group','6 months','Never visited'],a:1,r:'B: Established = seen by provider in same group within 3 years.'},
+{c:'CPT/HCPCS',f:'HCPCS Level II',b:'Supplies, DME, ambulance, certain drugs. Not CPT procedures.',q:'Wheelchair reported with:',o:['ICD','CPT','HCPCS Level II','Modifier'],a:2,r:'C: Wheelchair = DME = HCPCS Level II.'},
+{c:'CPT/HCPCS',f:'Upcoding',b:'Reporting higher code than documentation supports for more payment. Fraud.',q:'Upcoding is:',o:['Most specific code','Higher code than documented for more pay','Correct modifier','Coding symptoms'],a:1,r:'B: Upcoding = fraud. Billing higher than documented.'},
+{c:'CPT/HCPCS',f:'Unbundling',b:'Separating bundled services to increase payment. Fraud.',q:'Unbundling is:',o:['Combining visits','Separating bundled services for more pay','Bilateral modifier','Preventive coding'],a:1,r:'B: Unbundling = fraud. Billing separately what should be bundled.'},
+{c:'CPT/HCPCS',f:'Documentation Rule',b:'If not documented, it cannot be coded or billed.',q:'Provider did service but did not document. MA should:',o:['Code it anyway','Ask provider to document before coding','Bill with note','Use generic code'],a:1,r:'B: Documentation must exist before coding.'},
+{c:'CPT/HCPCS',f:'Add-On Codes',b:'Cannot be reported alone — must accompany a primary procedure code.',q:'Add-on code:',o:['Replaces primary','Must be with primary code','New patients only','Indicates denial'],a:1,r:'B: Add-ons supplement a primary code.'},
+{c:'CPT/HCPCS',f:'Global Period',b:'Post-surgical period where routine follow-up is included in surgery payment.',q:'During global period, routine follow-up is:',o:['Billed separately','Included in surgery payment','Not provided','Billed to different payer'],a:1,r:'B: Routine post-op care included in surgery fee.'},
+// Modifiers (10)
+{c:'Modifiers',f:'Modifier 25',b:'Significant separate E/M on same day as procedure. Goes on E/M code.',q:'Mod 25 appended to:',o:['Procedure','E/M code','ICD','HCPCS supply'],a:1,r:'B: 25 goes on E/M code.'},
+{c:'Modifiers',f:'Modifier 59',b:'Distinct procedural service. Separate/independent procedures.',q:'Mod 59 indicates:',o:['Bilateral','Reduced','Distinct procedure','Repeat same provider'],a:2,r:'C: 59 = distinct/separate procedure.'},
+{c:'Modifiers',f:'Modifier 50',b:'Bilateral — same procedure both sides.',q:'Both ears procedure. Modifier:',o:['25','59','50','76'],a:2,r:'C: 50 = bilateral.'},
+{c:'Modifiers',f:'Modifier 52',b:'Reduced services — partially reduced by provider.',q:'Mod 52 = service:',o:['Both sides','Partially reduced','Repeated same day','Different provider'],a:1,r:'B: 52 = provider-initiated reduction.'},
+{c:'Modifiers',f:'Modifier 76',b:'Repeat by same provider, same day.',q:'Same provider repeats X-ray same day:',o:['50','59','76','77'],a:2,r:'C: 76 = same provider repeats.'},
+{c:'Modifiers',f:'Modifier 77',b:'Repeat by different provider, same day.',q:'Different provider repeats procedure:',o:['76','77','25','59'],a:1,r:'B: 77 = different provider repeats.'},
+{c:'Modifiers',f:'RT / LT',b:'RT = right side. LT = left side.',q:'Left knee procedure:',o:['RT','LT','50','E1'],a:1,r:'B: LT = left side.'},
+{c:'Modifiers',f:'Finger Mods',b:'FA=left thumb. F1-F4=left index-pinky. F5=right thumb. F6-F9=right index-pinky.',q:'F7 = which finger?',o:['Left middle','Right middle','Left ring','Right ring'],a:1,r:'B: F7 = right middle. F5=R thumb, F6=R index, F7=R middle.'},
+{c:'Modifiers',f:'Toe Mods',b:'TA=left great. T1-T4=left 2nd-5th. T5=right great. T6-T9=right 2nd-5th.',q:'T5 = which toe?',o:['Left great','Right great','Left 5th','Right 5th'],a:1,r:'B: T5 = right great toe.'},
+{c:'Modifiers',f:'Eyelid Mods',b:'E1=upper left, E2=lower left, E3=upper right, E4=lower right.',q:'E3 =',o:['Upper left','Lower left','Upper right','Lower right'],a:2,r:'C: E3 = upper right eyelid.'},
+// Prior Auth (8)
+{c:'Prior Auth/ABN',f:'Referral',b:'PCP order to see specialist. Required by HMO and POS.',q:'Which plan requires referral?',o:['PPO','EPO','HMO','HDHP'],a:2,r:'C: HMO (and POS) require referrals.'},
+{c:'Prior Auth/ABN',f:'Prior Auth',b:'Payer approval before service. NOT a guarantee of payment.',q:'Prior auth is:',o:['Payment guarantee','Payer pre-approval','PCP referral','Patient consent'],a:1,r:'B: Pre-approval, not guarantee.'},
+{c:'Prior Auth/ABN',f:'Auth ≠ Payment',b:'Even with auth, claim may be denied if coverage lapses or docs insufficient.',q:'Authorized service later denied because:',o:['Auth guarantees, so impossible','Coverage lapsed or docs insufficient','Patient refused','Provider did not bill'],a:1,r:'B: Auth is not a guarantee. Conditions can change.'},
+{c:'Prior Auth/ABN',f:'Formulary',b:'List of covered medications with tier levels. Non-formulary may need prior auth.',q:'Rx not on formulary. MA should:',o:['Tell patient pay cash','Check PA or alternative','Cancel Rx','Bill as HCPCS'],a:1,r:'B: Check prior auth or formulary alternative.'},
+{c:'Prior Auth/ABN',f:'ABN Timing',b:'ABN must be given BEFORE service, not after.',q:'ABN should be issued:',o:['After denial','Before service','Only if requested','For PPO plans'],a:1,r:'B: BEFORE the service.'},
+{c:'Prior Auth/ABN',f:'Referral Number',b:'Unique tracking number for approved referral. Required on specialist claim.',q:'Before HMO patient sees specialist, verify:',o:['Referral number on file','PPO secondary','Medicare credentials','OOP max'],a:0,r:'A: HMO requires referral number.'},
+{c:'Prior Auth/ABN',f:'Missing Auth = Denial',b:'Failure to obtain prior auth is one of the most common denial reasons.',q:'Most common result of missing prior auth:',o:['Auto-paid','Claim denied','Patient gets referral','Deductible waived'],a:1,r:'B: Missing auth = leading cause of denials.'},
+{c:'Prior Auth/ABN',f:'Precertification',b:'Advance confirmation service meets payer coverage requirements.',q:'Precertification occurs:',o:['After service','Before service','Emergency only','Medicare only'],a:1,r:'B: Before the service.'},
+// Denials (6)
+{c:'Denials/Appeals',f:'Rejection',b:'Claim not processed — failed front-end edits (invalid ID, missing data). Fix and resubmit.',q:'Invalid subscriber ID claim return =',o:['Denial','Appeal','Rejection','Write-off'],a:2,r:'C: Data error = rejection.'},
+{c:'Denials/Appeals',f:'Denial',b:'Payer processed but refused payment. No auth, not necessary, non-covered.',q:'Payer processed claim, no prior auth → refused payment =',o:['Rejection','Denial','Write-off','Clearinghouse error'],a:1,r:'B: Processed + refused = denial.'},
+{c:'Denials/Appeals',f:'Appeal',b:'Formal request to reconsider denial with supporting documentation.',q:'Appeal is appropriate when:',o:['Data entry error','Payer denied but docs support service','Patient wants lower copay','Higher reimbursement desired'],a:1,r:'B: Appeal when documentation supports the denied service.'},
+{c:'Denials/Appeals',f:'Corrected Claim',b:'Resubmission after errors fixed. For rejections or incorrect original claims.',q:'Claim rejected for missing modifier. Action:',o:['Appeal','Submit corrected claim','Write off','Patient pays'],a:1,r:'B: Fix the error, resubmit as corrected claim.'},
+{c:'Denials/Appeals',f:'Timely Filing Denial',b:'Submitted after payer deadline. Usually final and non-appealable.',q:'Timely filing denial:',o:['Appealable with good docs','Usually non-reversible','Patient resubmits','Clearinghouse auto-resubmits'],a:1,r:'B: Timely filing denials are usually final.'},
+{c:'Denials/Appeals',f:'Denial Reason Codes',b:'Standardized codes on EOB/RA explaining why denied.',q:'Denial reason codes found on:',o:['Registration form','EOB/remittance advice','Referral auth','Prescription'],a:1,r:'B: Denial reasons are on EOB/RA.'},
+// EOB/Aging (6)
+{c:'EOB/Aging',f:'EOB ≠ Bill',b:'EOB is from payer explaining processing. Provider sends the bill/statement.',q:'Patient asks about EOB. Explain:',o:['It is their final bill','It explains how payer processed claim, not a bill','Send to another insurer','Replaces provider statement'],a:1,r:'B: EOB = payer explanation, not a bill.'},
+{c:'EOB/Aging',f:'A/R Aging',b:'Tracks unpaid balances by age: 0-30, 31-60, 61-90, 91-120, 120+ days.',q:'Balance at 95 days is in:',o:['0-30','31-60','61-90','91-120'],a:3,r:'D: 95 days falls in 91-120 bucket.'},
+{c:'EOB/Aging',f:'Payment Posting',b:'Recording insurance payments, adjustments, and patient balances from EOB/RA.',q:'Payment posting includes:',o:['Only insurance payment','Payments, adjustments, and balances','Only copay','Only denials'],a:1,r:'B: Complete posting = all components.'},
+{c:'EOB/Aging',f:'Contractual Adjustment',b:'Difference between billed and allowed. Provider writes off per contract. Patient does NOT pay.',q:'Billed $500, Allowed $380. Adjustment:',o:['$500','$380','$120','$0'],a:2,r:'C: $500-$380=$120 contractual adjustment.'},
+{c:'EOB/Aging',f:'Write-Off',b:'Removing uncollectible balance from A/R. Includes contractual adjustments and bad debt.',q:'Write-off =',o:['Increasing balance','Removing uncollectible amount','Adding charge','Transferring to payer'],a:1,r:'B: Write-offs remove balances.'},
+{c:'EOB/Aging',f:'Patient Statement',b:'Bill from provider office showing patient responsibility after insurance processes.',q:'Patient statement comes from:',o:['Insurance payer','Provider office','Clearinghouse','Government'],a:1,r:'B: Provider sends statements. Payer sends EOB.'},
+// HIPAA (6)
+{c:'HIPAA',f:'PHI',b:'Any individually identifiable health info: name, DOB, diagnosis, billing, insurance.',q:'PHI example:',o:['Medical textbook','Patient name + diagnosis on billing','Aggregate patient count','Office address'],a:1,r:'B: Name linked to diagnosis = PHI.'},
+{c:'HIPAA',f:'Minimum Necessary',b:'Share only info needed for the purpose. Does NOT apply to treatment disclosures between providers.',q:'Minimum necessary requires:',o:['Share all records','Share only what is needed','Never share','Share only with patient'],a:1,r:'B: Purposeful, limited disclosure.'},
+{c:'HIPAA',f:'TPO',b:'Treatment, Payment, Operations — PHI may be shared without specific authorization.',q:'Sharing notes with payer for claim =',o:['Marketing','Treatment','Payment','Research'],a:2,r:'C: Payer claim processing = Payment under TPO.'},
+{c:'HIPAA',f:'Verify Identity',b:'Always verify caller identity before discussing billing/account info by phone.',q:'Caller asks about balance. First:',o:['Share immediately','Verify identity','Transfer to provider','Refuse all phone info'],a:1,r:'B: Always verify before sharing.'},
+{c:'HIPAA',f:'HITECH Act',b:'Strengthened HIPAA enforcement, breach notifications, penalties. Business associates directly liable.',q:'HITECH primarily:',o:['Replaced HIPAA','Strengthened HIPAA enforcement/breach rules','Created Part D','Eliminated consent'],a:1,r:'B: HITECH supplements and strengthens HIPAA.'},
+{c:'HIPAA',f:'Release of Info',b:'Sharing outside TPO requires patient authorization specifying what, to whom, why, expiration.',q:'Employer requests records. MA should:',o:['Send immediately','Verify patient authorization on file','Have provider call employer','Deny all employer requests'],a:1,r:'B: Employer requests are not TPO — need authorization.'}
+];
+
+/* === FLASHCARD UI === */
+let fcCat='All',fcI=0;
+function gFC(){return fcCat==='All'?FC:FC.filter(f=>f.c===fcCat)}
+function bFC(){const cats=['All',...new Set(FC.map(f=>f.c))];
+let h=`<div class="g"><h2>🃏 Flashcard Vault</h2><p>${FC.length} cards, ${cats.length-1} categories. Click to flip, then rate.</p></div>`;
+h+=`<div class="fcc">${cats.map(c=>`<button class="fcb${c==='All'?' on':''}" onclick="fcCat='${c}';fcI=0;document.querySelectorAll('.fcb').forEach(b=>b.classList.remove('on'));this.classList.add('on');rFC()">${c}</button>`).join('')}</div>`;
+h+=`<div id="fca"></div><div class="fa" id="fcA"></div><div id="fcQ"></div>`;
+h+=`<div class="g"><h4>🗺️ Card Map</h4><div class="fm" id="fcM"></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;font-size:10px"><span>🟦Unvisited</span><span>🔵Current</span><span>🟩Mastered</span><span>🟨Bookmarked</span><span>🟥Study Again</span></div></div>`;
+document.getElementById('s2').innerHTML=h;rFC()}
+function rFC(){const fl=gFC();if(!fl.length)return;if(fcI>=fl.length)fcI=0;const fc=fl[fcI],gi=FC.indexOf(fc);
+document.getElementById('fca').innerHTML=`<div class="fwrap" onclick="document.getElementById('fi').classList.toggle('flip');pF()"><div class="finn" id="fi"><div class="face ff"><div class="tm">${fc.f}</div><p style="font-size:11px;color:var(--dim);margin-top:10px">${fc.c} — click to flip</p></div><div class="face fb"><div class="df">${fc.b}</div></div></div></div>`;
+document.getElementById('fcA').innerHTML=`<button class="btn bs" onclick="S.fc[${gi}]='m';ss();uP();nFC()">✓ Got It</button><button class="btn bd" onclick="S.fc[${gi}]='s';ss();nFC()">✗ Study Again</button><button class="btn bw" onclick="S.fc[${gi}]='b';ss();nFC()">★ Bookmark</button><button class="btn bp" onclick="nFC()">→ Next</button>`;
+document.getElementById('fcQ').innerHTML=`<div class="qb"><div class="qt">${fc.q}</div>${fc.o.map((o,i)=>`<button class="ob" onclick="cQ(this,${fc.a===i},'fcr')">${'ABCD'[i]}. ${o}</button>`).join('')}<div class="rt" id="fcr">${fmtR(fc.r)}</div></div>`;
+rFM()}
+function nFC(){const f=gFC();fcI=(fcI+1)%f.length;rFC()}
+function rFM(){const fl=gFC();document.getElementById('fcM').innerHTML=fl.map((fc,i)=>{const gi=FC.indexOf(fc),st=S.fc[gi]||'';const cls=i===fcI?'cu':st==='m'?'ma':st==='s'?'sa':st==='b'?'bk':'uv';return`<button class="fd ${cls}" onclick="fcI=${i};rFC()" title="${fc.f}">${i+1}</button>`}).join('')}
+
+/* === CODING BOOK === */
+function bCB(){
+let h=`<div class="g"><h2>📖 Interactive Coding Book</h2><p>Practice coding logic with ICD lookups, CPT lookups, and the Why vs What framework.</p></div>`;
+const icdS=[
+{n:'Patient presents with sore throat and fever. Provider documents acute pharyngitis.',q:'Main term for ICD lookup?',o:['Sore throat','Pharyngitis','Fever','Patient'],a:1,r:'B: Pharyngitis is the confirmed diagnosis.'},
+{n:'Provider documents "chest pain, rule out MI" outpatient.',q:'What should be coded?',o:['MI','Chest pain (symptom)','Both','No code needed'],a:1,r:'B: Rule-out not confirmed outpatient. Code symptom.'},
+{n:'Annual wellness exam. No complaints.',q:'Most appropriate code type?',o:['Injury','Symptom','Z code for routine exam','External cause'],a:2,r:'C: Z codes for routine/preventive encounters.'}
+];
+const cptS=[
+{n:'Established patient, sore throat. Rapid strep test performed.',q:'What needs a CPT code?',o:['Sore throat diagnosis','Rapid strep test','Insurance type','Referral'],a:1,r:'B: Strep test = procedure = CPT.'},
+{n:'New patient visit. Provider also removes skin tag same day.',q:'How many CPT codes?',o:['One (skin tag only)','One (visit only)','Two (E/M + skin tag removal)','Three'],a:2,r:'C: Two — E/M visit (with mod 25 if separate) + skin tag removal.'}
+];
+h+=`<div class="g"><h3>Part A: ICD-10-CM Lookup Practice</h3>`;
+icdS.forEach((s,i)=>{h+=`<div style="background:rgba(16,185,129,.06);padding:12px;border-radius:10px;margin:8px 0"><p style="font-style:italic">📋 ${s.n}</p><div class="qb"><div class="qt">${s.q}</div>${s.o.map((o,j)=>`<button class="ob" onclick="cQ(this,${s.a===j},'ir${i}')">${'ABCD'[j]}. ${o}</button>`).join('')}<div class="rt" id="ir${i}">${fmtR(s.r)}</div></div></div>`});
+h+=`</div><div class="g"><h3>Part B: CPT Lookup Practice</h3>`;
+cptS.forEach((s,i)=>{h+=`<div style="background:rgba(251,146,60,.06);padding:12px;border-radius:10px;margin:8px 0"><p style="font-style:italic">📋 ${s.n}</p><div class="qb"><div class="qt">${s.q}</div>${s.o.map((o,j)=>`<button class="ob" onclick="cQ(this,${s.a===j},'cr${i}')">${'ABCD'[j]}. ${o}</button>`).join('')}<div class="rt" id="cr${i}">${fmtR(s.r)}</div></div></div>`});
+h+=`</div><div class="g"><h3>Part C: Why vs What</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0">
+<div class="g" style="border-top:3px solid var(--emerald);text-align:center"><p style="font-size:40px">🔢</p><h4 style="color:var(--emerald)">ICD = WHY</h4><p>Diagnosis / Reason</p></div>
+<div class="g" style="border-top:3px solid var(--orange);text-align:center"><p style="font-size:40px">⚙️</p><h4 style="color:var(--orange)">CPT = WHAT</h4><p>Service / Procedure</p></div>
+<div class="g" style="border-top:3px solid var(--pink);text-align:center"><p style="font-size:40px">🏷️</p><h4 style="color:var(--pink)">MODIFIER = DETAIL</h4><p>Side / Bilateral / Separate</p></div></div></div>`;
+document.getElementById('s3').innerHTML=h}
+
+/* === INSURANCE LAB === */
+const IL=[
+{s:'HMO patient calls to schedule with cardiologist. No referral on file.',q:'MA should first:',o:['Schedule and collect copay','Verify if HMO requires referral and obtain it','Tell patient go to ER','Submit prior auth for cardiology'],a:1,r:'B: HMO + specialist → verify referral. A: Scheduling without referral risks denial. C: Not necessarily an emergency. D: Referral comes first for HMOs.',tp:'Referrals'},
+{s:'Medicare patient wants screening colonoscopy. Provider believes Medicare may not cover it.',q:'What form before procedure?',o:['Referral form','HIPAA authorization','ABN','COB form'],a:2,r:'C: Medicare may not cover → ABN before service. A: Not a referral issue. B: HIPAA auth is for PHI release. D: COB is for multiple plans.',tp:'ABN'},
+{s:'Claim submitted for MRI. Returned by clearinghouse: "Invalid subscriber ID."',q:'This is:',o:['Denial for medical necessity','Rejection due to data error','Appeal request','Timely filing issue'],a:1,r:'B: Invalid ID = data error = rejection. Fix and resubmit.',tp:'Denials'},
+{s:'EOB shows: Billed $500, Allowed $350, Paid $280, Deductible $0, Coinsurance $70.',q:'Patient responsibility:',o:['$500','$350','$70','$220'],a:2,r:'C: Coinsurance $70 = patient owes. $150 is contractual adjustment.',tp:'EOB'},
+{s:'Provider documents lesion removal right arm + separate significant E/M same day.',q:'Modifiers to consider:',o:['Mod 50 on removal','Mod 25 on E/M, possibly RT on removal','Mod 59 on E/M','Mod 76 on both'],a:1,r:'B: 25 on E/M (separate visit), RT on removal (right side).',tp:'Modifiers'},
+{s:'Pharmacy calls: patient Rx rejected by insurance — needs prior auth.',q:'MA should:',o:['Tell patient pay cash','Contact payer to initiate prior auth','Cancel prescription','Submit ABN'],a:1,r:'B: Initiate PA process with payer.',tp:'Prior Auth'},
+{s:'Patient calls upset: "I have insurance, why do I owe $200?"',q:'Best response:',o:['Waive the balance','Explain insurance paid their share, $200 is patient responsibility per plan benefits','Tell patient to call insurance and hang up','Ignore and resend bill'],a:1,r:'B: Calmly explain plan benefits (deductible/coinsurance/copay). Offer to review EOB.',tp:'Communication'},
+{s:'Aging report shows insurance balance at 110 days.',q:'Action:',o:['Write off immediately','Wait until 120 days','Follow up with payer urgently','Send to patient'],a:2,r:'C: 110 days is urgent. Check status before timely filing deadline passes.',tp:'A/R'},
+{s:'Front desk MA says patient diagnosis loudly in waiting room while on phone with payer.',q:'Potential violation of:',o:['ACA','Workers comp','HIPAA privacy rules','ABN requirement'],a:2,r:'C: Discussing diagnosis in public = HIPAA privacy violation.',tp:'HIPAA'},
+{s:'Patient has $1,500 deductible, paid $1,500. Allowed $400. Coinsurance 20%.',q:'Patient owes:',o:['$400','$80','$320','$0'],a:1,r:'B: Deductible met. 20% × $400 = $80.',tp:'Insurance'}
+];
+let ilI=0;
+function bIL(){let h=`<div class="g"><h2>🏥 Insurance Lab</h2><p>10 realistic scenarios testing insurance, billing, and compliance knowledge.</p></div><div id="ilC"></div>`;document.getElementById('s4').innerHTML=h;rIL()}
+function rIL(){const s=IL[ilI];document.getElementById('ilC').innerHTML=`<div class="g" style="font-size:11px;color:var(--dim)">Scenario ${ilI+1}/${IL.length} — ${s.tp}</div><div class="g" style="border-left:3px solid var(--teal)"><p style="font-style:italic;margin-bottom:10px">${s.s}</p><div class="qb"><div class="qt">${s.q}</div>${s.o.map((o,i)=>`<button class="ob" onclick="cQ(this,${s.a===i},'ilr')">${'ABCD'[i]}. ${o}</button>`).join('')}<div class="rt" id="ilr">${fmtR(s.r)}</div></div></div><div style="display:flex;gap:8px;justify-content:center"><button class="btn bp" onclick="ilI=Math.max(0,ilI-1);rIL()">← Prev</button><button class="btn bp" onclick="ilI=Math.min(IL.length-1,ilI+1);rIL()">Next →</button></div>`}
+
+/* === CMS LAB === */
+function bCL(){
+let h=`<div class="g"><h2>📋 CMS/Billing Flow Lab</h2><p>Explore a simplified claim form and the claim journey.</p></div>`;
+h+=`<div class="cms"><h4>PATIENT & INSURED INFORMATION</h4><div class="cr"><div class="fld">Patient Name<div class="tt">Full legal name matching insurance card.</div></div><div class="fld">DOB<div class="tt">Must match insurance records exactly.</div></div><div class="fld">Patient Address<div class="tt">Mailing address for statements.</div></div></div><div class="cr"><div class="fld">Insured Name<div class="tt">Policyholder — may differ from patient.</div></div><div class="fld">Insured ID / Policy #<div class="tt">Member ID from insurance card. Must be exact — wrong IDs cause rejections.</div></div><div class="fld">Group #<div class="tt">Employer group or plan identifier.</div></div></div><div class="cr"><div class="fld">Payer/Plan<div class="tt">Insurance company name. Must match payer ID for electronic submission.</div></div><div class="fld">Plan Type<div class="tt">HMO, PPO, EPO, Medicare, etc.</div></div></div>`;
+h+=`<h4>DIAGNOSIS (ICD-10-CM)</h4><div class="cr"><div class="fld" style="background:#e8ffe8">A. ___<div class="tt">📌 Primary diagnosis (WHY). Main reason for encounter.</div></div><div class="fld" style="background:#e8ffe8">B. ___<div class="tt">📌 Secondary diagnosis. Additional affecting conditions.</div></div><div class="fld" style="background:#e8ffe8">C. ___<div class="tt">📌 Additional if needed.</div></div><div class="fld" style="background:#e8ffe8">D. ___<div class="tt">📌 Additional if needed.</div></div></div>`;
+h+=`<h4>PROCEDURES / SERVICES</h4><table style="width:100%;font-size:11px;border-collapse:collapse"><tr style="background:#e0e0e0"><th style="padding:5px">DOS</th><th>POS</th><th>CPT</th><th>Mod</th><th>Dx Ptr</th><th>Charges</th><th>Units</th></tr><tr><td class="fld">MM/DD<div class="tt">Date of service.</div></td><td class="fld">11<div class="tt">📍 Place of Service. 11=Office, 21=Inpatient, 22=Outpatient, 23=ER.</div></td><td class="fld" style="background:#fff3e0">99213<div class="tt">⚙️ CPT: WHAT was done. 99213 = established E/M visit.</div></td><td class="fld" style="background:#fce4ec">25<div class="tt">🏷️ Modifier: EXTRA DETAIL. 25 = significant separate E/M.</div></td><td class="fld">A<div class="tt">🔗 Links procedure to diagnosis above (A,B,C,D) for medical necessity.</div></td><td class="fld">$150<div class="tt">💲 Provider billed amount.</div></td><td class="fld">1<div class="tt">📦 Number of services/items.</div></td></tr></table>`;
+h+=`<h4>PROVIDER</h4><div class="cr"><div class="fld">Provider Name<div class="tt">Rendering provider.</div></div><div class="fld">NPI<div class="tt">National Provider Identifier — unique 10-digit number.</div></div><div class="fld">Tax ID<div class="tt">Federal tax ID for payment.</div></div></div></div>`;
+h+=`<div class="g" style="margin-top:16px"><h3>🚀 Claim Journey</h3><p>Click each step to see different outcomes.</p><div class="cj">
+<div class="cs" style="background:rgba(37,99,235,.15)" onclick="sCO(0)">📤 Submitted</div>
+<div class="cs" style="background:rgba(56,189,248,.15)" onclick="sCO(1)">🔍 Clearinghouse</div>
+<div class="cs" style="background:rgba(139,92,246,.15)" onclick="sCO(2)">⚖️ Adjudication</div>
+<div class="cs" style="background:rgba(16,185,129,.15)" onclick="sCO(3)">✅ Paid</div>
+<div class="cs" style="background:rgba(251,146,60,.15)" onclick="sCO(4)">🔄 Rejected</div>
+<div class="cs" style="background:rgba(239,68,68,.15)" onclick="sCO(5)">❌ Denied</div>
+<div class="cs" style="background:rgba(250,204,21,.15)" onclick="sCO(6)">⏳ Pending</div></div>
+<div id="co" class="g" style="min-height:50px"></div></div>`;
+document.getElementById('s5').innerHTML=h}
+const CO=['<b>📤 Submitted:</b> Claim sent electronically to clearinghouse or payer. All required fields must be complete.','<b>🔍 Clearinghouse:</b> Checks for formatting errors, missing fields, invalid data. If errors → REJECTED back to office. If clean → forwarded to payer.','<b>⚖️ Adjudication:</b> Payer reviews claim against benefits, coverage, medical necessity, authorization. Decides: pay, deny, or pend.','<b>✅ Paid:</b> Payer approves. Sends payment + remittance advice. Office posts payment, bills patient for remainder.','<b>🔄 Rejected:</b> NOT processed — data errors (invalid ID, missing DOB). Returned before adjudication. Fix and resubmit.','<b>❌ Denied:</b> Payer processed but refused payment. No auth, not necessary, non-covered, timely filing. Review reason, correct or appeal.','<b>⏳ Pending:</b> Payer needs more info or review. Respond promptly to requests. Follow up if delayed.'];
+function sCO(i){document.getElementById('co').innerHTML=CO[i]}
+
+/* === PRACTICE QUESTIONS === */
+const PQ=[
+{q:'HMO patient scheduled with orthopedic specialist. No referral number in chart. MA should:',o:['Collect copay and proceed','Verify referral requirement and obtain if needed','Submit appeal after visit','Ask patient to sign ABN'],a:1,r:'B: HMO+specialist+no referral → verify and obtain. A: Copay does not solve referral requirement. C: Appeal is post-denial. D: ABN is Medicare.',tp:'Referrals',st:'HMO + specialist + no referral → referral needed.'},
+{q:'Which code set identifies the REASON patient was seen?',o:['CPT','HCPCS Level II','ICD-10-CM','POS codes'],a:2,r:'C: ICD = WHY/reason/diagnosis. A: CPT = WHAT procedure. B: HCPCS = supplies/DME. D: POS = WHERE.',tp:'ICD',st:'"Reason" = WHY = ICD.'},
+{q:'Medicare patient wants screening that may not be covered. Before test, MA should:',o:['Bill patient after','Have patient sign ABN','Submit claim first to check','Suggest plan switch'],a:1,r:'B: ABN before service. A: After defeats purpose. C: Not compliant. D: Not MA role.',tp:'ABN',st:'Medicare + may not cover + BEFORE = ABN.'},
+{q:'EOB is best described as:',o:['Bill from provider','Payer explanation of claim processing','Referral document','Prescription form'],a:1,r:'B: EOB explains processing, not a bill. A: Provider sends bills.',tp:'EOB',st:'EOB = Explanation, not bill. From PAYER.'},
+{q:'Claim returned because DOB is missing. This is a:',o:['Denial','Rejection','Appeal','Write-off'],a:1,r:'B: Missing data = front-end error = rejection. A: Denial = processed. C: Appeal = response to denial. D: Write-off = accounting.',tp:'Denials',st:'Missing data + returned = rejection (not processed).'},
+{q:'Modifier 25 is appended to:',o:['ICD code','CPT procedure','E/M code','HCPCS supply'],a:2,r:'C: Mod 25 = significant separate E/M. Goes on E/M code. A: Not ICD. B: Not procedure. D: Not supply.',tp:'Modifiers',st:'25 → E/M code. Always.'},
+{q:'Payer denies claim: "prior auth not obtained." This is:',o:['Rejection','Denial','Clearinghouse error','Patient billing error'],a:1,r:'B: Payer processed and refused = denial. A: Rejection = not processed.',tp:'Denials',st:'Payer processed + refused payment = denial.'},
+{q:'Medicare Part B covers:',o:['Inpatient hospital','Outpatient/physician services','Prescription drugs','Medicare Advantage plans'],a:1,r:'B: Part B = outpatient, provider, preventive, DME. A: Part A. C: Part D. D: Part C.',tp:'Medicare',st:'B = outpatient/provider/DME.'},
+{q:'Patient has $2,000 deductible (paid $2,000). Allowed $500, 20% coinsurance. Owes:',o:['$500','$400','$100','$0'],a:2,r:'C: Deductible met. 20%×$500=$100. A: Not full allowed. B: Insurance share. D: Coinsurance still applies.',tp:'Insurance',st:'Deductible met → apply coinsurance to allowed amount.'},
+{q:'Which plan typically requires PCP referral for specialists?',o:['PPO','EPO','HMO','HDHP'],a:2,r:'C: HMO requires PCP and referrals. A: PPO = no referral. B: EPO = no referral. D: HDHP = deductible-based.',tp:'Plans',st:'Referral + PCP = HMO.'},
+{q:'Minimum necessary rule under HIPAA requires:',o:['Share all records always','Share only info needed for purpose','Never share anything','Share only with written consent'],a:1,r:'B: Minimum necessary = limited, purposeful disclosure. A: Violates rule. C: PHI can be shared for TPO. D: TPO does not require written consent.',tp:'HIPAA',st:'Minimum necessary = only what is needed.'},
+{q:'In outpatient, "rule out" diagnosis should be coded as:',o:['Confirmed diagnosis','Presenting signs/symptoms','V code','No code needed'],a:1,r:'B: Rule-out outpatient = code symptoms. A: Not confirmed. C: V codes are ICD-9. D: All encounters need codes.',tp:'ICD',st:'Rule out + outpatient = code symptoms. Most tested concept.'},
+{q:'Patient calls about account balance. MA should first:',o:['Read balance immediately','Verify caller identity','Transfer to provider','Refuse phone discussion'],a:1,r:'B: Verify identity before sharing any billing info. A: HIPAA risk. C: Billing handles this. D: Phone discussion is permitted after verification.',tp:'HIPAA',st:'Verify FIRST, always.'},
+{q:'HCPCS Level II reports:',o:['Diagnoses','E/M visits','Supplies, DME, certain drugs','Place of service'],a:2,r:'C: HCPCS II = supplies, DME, ambulance, drugs. A: ICD. B: CPT. D: POS code.',tp:'CPT/HCPCS',st:'HCPCS = supplies and equipment.'},
+{q:'A/R aging report shows payer balance at 120+ days. Best action:',o:['Auto write off','Urgently follow up with payer','Wait for payer to call','Transfer to patient'],a:1,r:'B: 120+ = urgent follow-up. Check status, timely filing at risk. A: Write off loses revenue. C: Payers rarely call. D: Resolve insurance portion first.',tp:'A/R',st:'120+ days = red flag = investigate immediately.'},
+{q:'Both ears procedure. Modifier:',o:['25','50','59','76'],a:1,r:'B: 50 = bilateral (both sides). A: Separate E/M. C: Distinct procedure. D: Repeat same provider.',tp:'Modifiers',st:'Bilateral = both sides = 50.'},
+{q:'Diagnosis pointer on claim connects:',o:['Patient to plan','Procedure to supporting diagnosis','Referring to specialist','Copay to deductible'],a:1,r:'B: Pointer links CPT line to ICD diagnosis for medical necessity. Others unrelated.',tp:'CMS',st:'Pointer = CPT → ICD connection.'},
+{q:'Dual eligible (Medicare + Medicaid). Which billed first?',o:['Medicaid','Medicare','Patient chooses','Simultaneously'],a:1,r:'B: Medicare = primary for dual eligible. Medicaid = secondary.',tp:'Medicare',st:'Dual eligible: Medicare first, Medicaid second.'},
+{q:'Sliding-scale fees adjust based on:',o:['Same amount for all','Patient ability to pay','Increasing for insured','Eliminating copays'],a:1,r:'B: Sliding scale = income-based adjustment.',tp:'Financial',st:'Sliding scale = income-based.'},
+{q:'Prior authorization is best understood as:',o:['Payment guarantee','Pre-approval meeting criteria at time of request','PCP referral','Patient treatment consent'],a:1,r:'B: Pre-approval, NOT guarantee. A: Never a guarantee. C: Referral is different. D: Consent is clinical.',tp:'Prior Auth',st:'Auth ≠ guarantee. Biggest trap.'},
+{q:'Clearinghouse function in billing cycle:',o:['Provides patient care','Screens claims for errors before payers','Determines diagnosis','Sets allowed amount'],a:1,r:'B: Clearinghouse = claim error screening. A: Administrative, not clinical. C: Providers determine. D: Payers set allowed.',tp:'Revenue',st:'Clearinghouse = cleans claims.'},
+{q:'EPO patient wants out-of-network dermatologist. MA should explain:',o:['Covered at higher rate','No coverage except emergencies','Need referral first','Submit ABN'],a:1,r:'B: EPO = exclusive = in-network only. A: PPO feature. C: EPOs no referral. D: ABN = Medicare.',tp:'Plans',st:'EPO = Exclusive = in-network only.'},
+{q:'Same provider repeats X-ray same day. Modifier:',o:['50','59','76','77'],a:2,r:'C: 76 = repeat by SAME provider. A: Bilateral. B: Distinct. D: Different provider.',tp:'Modifiers',st:'76 = same provider repeats. 77 = different.'},
+{q:'Primary diagnosis is:',o:['Most chronic condition','Main reason for THIS encounter','Most expensive','Highest reimbursement'],a:1,r:'B: Primary = reason for this visit. A: Chronic may not be today\'s reason. C/D: Not determined by cost or reimbursement.',tp:'ICD',st:'Primary = reason for TODAY\'s encounter.'},
+{q:'Provider documents "Type 2 diabetes" and "hypertension." Visit for med review of both. Primary diagnosis:',o:['Higher reimbursement one','Main reason for encounter','First diagnosed','Any order'],a:1,r:'B: Primary = main reason for today\'s visit. A/C/D: Incorrect bases for selection.',tp:'ICD',st:'Primary = today\'s reason, not severity.'},
+{q:'Established patient E/M code is for someone seen within past:',o:['1 year','3 years by same group','6 months','Never'],a:1,r:'B: Established = seen within 3 years by provider in same group/specialty. A: 3 years, not 1. C: 3 years. D: Never = new.',tp:'CPT',st:'Established = within 3 years.'},
+{q:'Z codes are used for:',o:['Injuries only','Screenings, vaccines, routine exams','Surgical procedures','Emergency visits only'],a:1,r:'B: Z codes = encounters not for disease — preventive, screenings, admin. A: Injuries have their own codes. C/D: Not Z code purposes.',tp:'ICD',st:'Z codes = non-disease encounters.'},
+{q:'If service not documented, MA should:',o:['Code based on what was likely done','Ask provider to document before coding','Bill anyway with note','Use generic code'],a:1,r:'B: Documentation must exist before coding. "If not documented, not done."',tp:'CPT',st:'No documentation = no code.'},
+{q:'ABN is used specifically for:',o:['HMO plans','Commercial PPO','Medicare','Workers comp'],a:2,r:'C: ABN = Medicare only. Other plans have different processes.',tp:'ABN',st:'ABN = Medicare. Period.'},
+{q:'Contractual adjustment is:',o:['What patient pays','Difference between billed and allowed amounts','Copay amount','Insurance payment'],a:1,r:'B: Billed minus allowed = contractual adjustment. Patient does NOT pay this.',tp:'EOB',st:'Billed − Allowed = contractual adjustment.'},
+{q:'NPI is:',o:['Insurance plan number','Unique 10-digit provider identifier','Patient ID number','Clearinghouse code'],a:1,r:'B: NPI = National Provider Identifier, 10-digit unique number required on claims.',tp:'CMS',st:'NPI = provider\'s unique number.'},
+{q:'Claim adjudication means:',o:['Patient pays copay','Payer processes and decides on claim','Provider documents visit','Clearinghouse formats claim'],a:1,r:'B: Adjudication = payer review and payment decision.',tp:'Revenue',st:'Adjudication = payer decides.'},
+{q:'Patient has PPO. Wants specialist. What is needed?',o:['Referral from PCP','Prior authorization for every visit','No referral — PPO allows direct access','ABN from Medicare'],a:2,r:'C: PPOs allow direct specialist access without referral. A: HMOs need referrals. B: Not every visit needs PA. D: Irrelevant.',tp:'Plans',st:'PPO = no referral needed.'},
+{q:'Workers compensation covers:',o:['All medical conditions','Work-related injuries/illnesses','Only prescriptions','Age 65+ only'],a:1,r:'B: Workers comp = work-related injuries and illnesses only.',tp:'Plans',st:'Workers comp = work injuries.'},
+{q:'Clean claim is one that:',o:['Has been paid','Has all required fields complete and correct','Has been denied','Has no charges'],a:1,r:'B: Clean = all data correct for submission. Does not mean paid.',tp:'Revenue',st:'Clean = correct/complete, not paid.'},
+{q:'HITECH Act:',o:['Replaced HIPAA','Strengthened HIPAA enforcement and breach rules','Created Medicare','Eliminated deductibles'],a:1,r:'B: HITECH supplements HIPAA with stronger enforcement/penalties/breach notifications.',tp:'HIPAA',st:'HITECH = stronger HIPAA.'},
+{q:'When patient has two insurance plans, COB determines:',o:['Which doctor to see','Which plan pays first and second','Copay amount','Whether referral needed'],a:1,r:'B: COB = payment order. Primary first, secondary after.',tp:'Insurance',st:'COB = who pays first/second.'},
+{q:'Unbundling is:',o:['Combining visits into one claim','Separating bundled services for more pay — fraud','Using bilateral modifier','Coding preventive visit'],a:1,r:'B: Unbundling = fraudulently separating what should be one code.',tp:'CPT',st:'Unbundling = billing fraud.'},
+{q:'Upcoding is:',o:['Most specific code available','Reporting higher code than documented for more pay — fraud','Correct modifier use','Coding symptoms when appropriate'],a:1,r:'B: Upcoding = fraud — billing higher than documented.',tp:'CPT',st:'Upcoding = billing fraud.'},
+{q:'Payer balance at 60 days should:',o:['Be written off','Trigger follow-up investigation','Be sent to patient','Be ignored until 120 days'],a:1,r:'B: 60 days = needs follow-up. Check claim status, contact payer.',tp:'A/R',st:'60+ days = investigate.'},
+{q:'Add-on CPT codes:',o:['Replace primary code','Must accompany a primary code','For new patients only','Indicate denials'],a:1,r:'B: Add-ons cannot stand alone — must be with a primary procedure.',tp:'CPT',st:'Add-on = with primary only.'},
+{q:'Remittance advice is sent to:',o:['Patient','Provider office','Clearinghouse','Employer'],a:1,r:'B: RA goes to provider showing how claims were processed. EOB goes to patient.',tp:'Revenue',st:'RA = to provider. EOB = to patient.'},
+{q:'POS code 11 means service was performed in:',o:['Hospital inpatient','Provider office','ER','Skilled nursing'],a:1,r:'B: POS 11 = office. 21 = inpatient. 23 = ER.',tp:'CMS',st:'11 = office.'},
+{q:'TPO under HIPAA allows sharing PHI for:',o:['Marketing','Treatment, Payment, Operations','Research only','Employment purposes'],a:1,r:'B: TPO = Treatment, Payment, Healthcare Operations — permitted without specific patient authorization.',tp:'HIPAA',st:'TPO = permitted without specific auth.'},
+{q:'External cause codes describe:',o:['The diagnosis itself','How and where injury occurred','Procedure performed','Insurance plan'],a:1,r:'B: External cause = mechanism, place, activity of injury. Supplementary, never primary.',tp:'ICD',st:'External cause = how/where injury happened.'},
+{q:'Global surgical period means routine follow-up is:',o:['Billed separately each time','Included in original surgery payment','Not provided','Billed to different payer'],a:1,r:'B: Global period includes routine post-op care in surgery fee.',tp:'CPT',st:'Global period = follow-up included.'},
+{q:'Patient requests records be sent to their employer. MA should:',o:['Send immediately','Verify signed patient authorization is on file','Ask provider to call employer','Deny all employer requests'],a:1,r:'B: Employer = not TPO. Need patient authorization.',tp:'HIPAA',st:'Employer = need authorization.'},
+{q:'Laterality in ICD-10-CM means:',o:['Code must specify time of day','Code must specify right, left, or bilateral when applicable','Code length is unlimited','Code must include provider name'],a:1,r:'B: Many codes require specifying which side of body.',tp:'ICD',st:'Laterality = right/left/bilateral.'},
+{q:'Medicaid eligibility varies by:',o:['Patient age only','State','Provider type','Type of procedure'],a:1,r:'B: Medicaid is federal/state program — eligibility criteria differ by state.',tp:'Medicare',st:'Medicaid = varies by state.'},
+{q:'Precertification occurs:',o:['After service is completed','Before service','Only for emergencies','Only for Medicare'],a:1,r:'B: Precertification = advance confirmation before service.',tp:'Prior Auth',st:'Precertification = before service.'},
+{q:'Patient portal allows patients to:',o:['Only schedule appointments','Access health records, billing, and communicate with providers','Replace all office visits','Bypass HIPAA rules'],a:1,r:'B: Portals provide access to records, billing, messages, scheduling. A: More than scheduling. C: Does not replace visits. D: HIPAA still applies.',tp:'EHR',st:'Patient portal = access records/billing/communication.'},
+{q:'Telehealth technical support by MA includes:',o:['Diagnosing the patient','Helping patient connect to virtual visit platform','Prescribing medications','Performing procedures'],a:1,r:'B: MA helps patients with technical connection issues. A/C/D: Outside MA scope.',tp:'Telehealth',st:'MA = technical support, not clinical decisions.'},
+{q:'Missing modifier most commonly causes:',o:['Automatic payment','Claim rejection or denial','Patient satisfaction increase','Provider credentialing'],a:1,r:'B: Missing/incorrect modifiers cause rejections or denials. Modifiers provide necessary detail.',tp:'Modifiers',st:'Missing modifier = rejection/denial.'},
+{q:'Timely filing denial means:',o:['Claim can be appealed with good documentation','Claim was submitted after payer deadline — usually final','Patient needs to resubmit','Clearinghouse auto-resubmits'],a:1,r:'B: Timely filing miss = typically non-reversible denial.',tp:'Revenue',st:'Timely filing miss = usually final.'},
+{q:'When posting payments from an EOB, the MA records:',o:['Only the check amount','Insurance payment, adjustments, and patient balance','Only the denial code','Only the billed amount'],a:1,r:'B: Complete posting includes all components from the EOB/RA.',tp:'EOB',st:'Post everything: payments, adjustments, balances.'},
+{q:'An appeal is filed when:',o:['A claim has a typo','A payer denied a claim but documentation supports the service','The patient wants a lower copay','The provider wants higher reimbursement'],a:1,r:'B: Appeal = formal request to reconsider denial when documentation supports the service.',tp:'Denials',st:'Appeal = docs support service but payer denied.'},
+{q:'Formulary tier levels affect:',o:['Hospital copay','Patient prescription medication cost','DME coverage','Specialist network'],a:1,r:'B: Formulary tiers determine what patient pays for each medication.',tp:'Prior Auth',st:'Tiers = medication cost to patient.'},
+{q:'Medical necessity means:',o:['Patient wants the service','Service is reasonable and necessary for diagnosis/treatment','Service is the cheapest option','Provider recommends it'],a:1,r:'B: Payer requires service be reasonable and necessary for the condition. A: Want ≠ necessity. C: Not about cheapest. D: Provider recommendation alone may not meet payer criteria.',tp:'Insurance',st:'Medical necessity = reasonable and necessary for condition.'},
+{q:'Modifier F5 identifies:',o:['Left thumb','Right thumb','Left index finger','Right index finger'],a:1,r:'B: F5 = right hand thumb. FA = left thumb. F6 = right index.',tp:'Modifiers',st:'FA=left thumb, F5=right thumb.'},
+{q:'A corrected claim is submitted when:',o:['A claim needs to be appealed','Original claim had errors that need fixing','Patient wants a different provider','Insurance changes after service'],a:1,r:'B: Corrected claim = fixing errors on original submission. A: Appeal is for denials, not data corrections.',tp:'Denials',st:'Corrected claim = fix errors, resubmit.'},
+];
+
+/* === PRACTICE UI === */
+let pI=0;
+function bPQ(){let h=`<div class="g"><h2>✏️ Practice Questions</h2><p>${PQ.length} questions. Click question numbers to navigate. Flag questions for review.</p></div>`;
+h+=`<div class="leg"><span><span class="ld" style="background:var(--ltblue)"></span> Unvisited</span><span><span class="ld" style="background:var(--royal)"></span> Current</span><span><span class="ld" style="background:var(--emerald)"></span> Correct</span><span><span class="ld" style="background:var(--rose)"></span> Missed</span><span><span class="ld" style="background:var(--gold)"></span> Flagged</span></div>`;
+h+=`<div class="qm" id="pm"></div><div id="pc"></div>`;
+document.getElementById('s6').innerHTML=h;rPQ()}
+function rPQ(){
+// map
+let m='';PQ.forEach((_,i)=>{const ans=S.pa[i];const fl=S.pf[i];const cls=i===pI?'cu':fl?'fl':ans===true?'ok':ans===false?'no':'uv';m+=`<button class="qd ${cls}" onclick="pI=${i};rPQ()">${i+1}</button>`});
+document.getElementById('pm').innerHTML=m;
+const q=PQ[pI];const answered=S.pa[pI]!==undefined;
+let h=`<div class="g" style="font-size:11px;color:var(--dim)">Q${pI+1}/${PQ.length} — ${q.tp}</div>`;
+h+=`<div class="g"><div class="qb"><div class="qt">${q.q}</div>`;
+q.o.forEach((o,i)=>{
+const dis=answered?'dis':'';
+const ok=answered&&q.a===i?'ok':'';
+const no=answered&&S.pa[pI]===false&&S.ps&&S.ps[pI]===i?'no':'';
+h+=`<button class="ob ${dis} ${ok} ${no}" onclick="aPQ(${i})">${'ABCD'[i]}. ${o}</button>`;
+});
+h+=`<div class="rt${answered?' show':''}" id="pr">${fmtR(q.r)}</div>`;
+if(answered)h+=`<div class="strategyBox"><h4>🎯 Strategy from Hilary</h4><p>${q.st||topicStrategy(q.tp)}</p></div>`;
+h+=`</div></div>`;
+h+=`<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<button class="btn bp" onclick="pI=Math.max(0,pI-1);rPQ()">← Prev</button>
+<button class="btn bw" onclick="S.pf[pI]=!S.pf[pI];ss();rPQ()">⚑ Flag</button>
+<button class="btn bp" onclick="pI=Math.min(PQ.length-1,pI+1);rPQ()">Next →</button></div>`;
+document.getElementById('pc').innerHTML=h}
+function aPQ(i){if(S.pa[pI]!==undefined)return;const ok=PQ[pI].a===i;S.pa[pI]=ok;S.ps=S.ps||{};S.ps[pI]=i;ss();uP();if(ok)pC();else pW();rPQ()}
+
+/* === CHALLENGE QUESTIONS === */
+const CQ=[
+{q:'A patient has an HMO and PPO (dual coverage). The HMO requires a referral for a specialist. The PPO does not. The patient wants to see a specialist using the HMO as primary. What is needed?',o:['No referral since PPO is secondary','Referral because HMO is primary and requires it','ABN from Medicare','Prior auth from both plans'],a:1,r:'B: Primary plan rules apply. HMO primary requires referral.',tp:'Referrals'},
+{q:'Billed $800, Allowed $500, Deductible remaining $200, Coinsurance 30%. Patient owes:',o:['$290','$380','$240','$300'],a:0,r:'A: Ded $200 + 30%×($500-$200)=30%×$300=$90. Total=$290.',tp:'Insurance'},
+{q:'Provider performs bilateral knee injections and a separate significant E/M same visit. Modifiers needed:',o:['50 on injection, 25 on E/M','25 on injection, 50 on E/M','76 on both','59 on both'],a:0,r:'A: 50 on injection (bilateral), 25 on E/M (separate significant E/M).',tp:'Modifiers'},
+{q:'Claim denied: "service not covered under patient benefit plan." Best action:',o:['Appeal immediately','Verify the patient had active coverage and correct plan on file, then decide next step','Write off the balance','Bill the patient for full billed amount'],a:1,r:'B: First verify — wrong plan on file could explain denial. Then correct and resubmit or appeal if appropriate.',tp:'Denials'},
+{q:'Medicare patient has Part A and Part B. Needs outpatient MRI. Which part applies?',o:['Part A','Part B','Part D','None — MRI not covered'],a:1,r:'B: Outpatient services = Part B.',tp:'Medicare'},
+{q:'Patient signs ABN, chooses to have the service, Medicare denies. Who is responsible?',o:['Medicare','The provider','The patient','No one'],a:2,r:'C: ABN transfers financial responsibility to patient if Medicare denies.',tp:'ABN'},
+{q:'A claim is pending at 85 days. Timely filing deadline is 90 days. MA should:',o:['Wait until 90 days','Contact payer immediately to check status','Write off the balance','Resubmit a new claim'],a:1,r:'B: Urgent — 5 days before deadline. Contact payer immediately.',tp:'A/R'},
+{q:'Provider documents "suspected appendicitis" for outpatient ED visit. Patient has RLQ pain and nausea. Code:',o:['Appendicitis','RLQ pain and nausea','Both appendicitis and symptoms','Suspected with special modifier'],a:1,r:'B: "Suspected" in outpatient = not confirmed. Code symptoms.',tp:'ICD'},
+{q:'Modifier E2 identifies:',o:['Upper left eyelid','Lower left eyelid','Upper right eyelid','Lower right eyelid'],a:1,r:'B: E2 = lower LEFT eyelid.',tp:'Modifiers'},
+{q:'Patient has HDHP with $3,000 deductible, $0 met. Office visit allowed $180. Patient owes:',o:['$0','$36','$180','$3,000'],a:2,r:'C: $0 deductible met means full allowed ($180) applies to deductible. Patient pays all $180.',tp:'Insurance'},
+{q:'A corrected claim should be submitted when:',o:['A denial needs to be appealed','The original claim had errors (wrong modifier, ID, dates)','The patient disagrees with the bill','A new service was performed'],a:1,r:'B: Corrected claim = fixing errors on original submission.',tp:'Denials'},
+{q:'POS code 23 indicates:',o:['Provider office','Inpatient hospital','Emergency room','Skilled nursing facility'],a:2,r:'C: POS 23 = ER. 11=office. 21=inpatient. 31=SNF.',tp:'CMS'},
+{q:'Payer requests medical records for a claim. Under HIPAA, MA should:',o:['Refuse — requires patient authorization','Verify caller, send only records relevant to the claim','Send entire chart to expedite','Wait for patient to authorize'],a:1,r:'B: Payment = TPO = permitted. Verify caller, minimum necessary.',tp:'HIPAA'},
+{q:'Patient has $40 copay and 20% coinsurance. Allowed $300, deductible met. Some plans apply copay instead of coinsurance for office visits. What should the MA verify?',o:['Nothing — always collect both','How the specific plan applies copay vs coinsurance for this service','The billed amount only','The patient\'s age'],a:1,r:'B: Plans vary — some charge copay OR coinsurance, not both. Verify plan specifics.',tp:'Insurance'},
+{q:'Modifier T3 identifies:',o:['Left foot 4th toe','Right foot 4th toe','Left foot 3rd toe','Right foot 3rd toe'],a:0,r:'A: T3 = left foot, 4th digit. TA=left great, T1=left 2nd, T2=left 3rd, T3=left 4th.',tp:'Modifiers'},
+{q:'Provider performs same procedure twice on same day, same patient, same provider. Modifier:',o:['50','59','76','77'],a:2,r:'C: 76 = repeat by SAME provider. 77 = different provider.',tp:'Modifiers'},
+{q:'Patient\'s mother calls asking about 22-year-old patient\'s billing statement. MA should:',o:['Share the information since it is the mother','Verify if patient has authorized mother to receive billing info','Transfer to provider','Refuse all family inquiries permanently'],a:1,r:'B: Adult patient (22) = need authorization for family to receive billing info.',tp:'HIPAA'},
+{q:'What connects a CPT procedure line to its supporting ICD diagnosis on a claim?',o:['Modifier','NPI','Diagnosis pointer','POS code'],a:2,r:'C: Diagnosis pointer (A,B,C,D) links procedure to supporting diagnosis.',tp:'CMS'},
+{q:'A Medicare Advantage plan (Part C) is:',o:['A government-run supplement','A private plan combining Part A and Part B benefits','Only for prescription drugs','Only for low-income patients'],a:1,r:'B: Part C = private plan bundling A+B, often with extras.',tp:'Medicare'},
+{q:'Formulary status "non-formulary" most likely means:',o:['Drug is free','Drug requires prior authorization or is not covered','Drug is available at any pharmacy','Drug has no copay'],a:1,r:'B: Non-formulary = may need PA or may not be covered. Check alternatives.',tp:'Prior Auth'},
+{q:'During charge reconciliation, the MA ensures:',o:['Only copays are collected','All documented services match entered charges and payments are accurate','Appointments are scheduled correctly','Lab results are filed'],a:1,r:'B: Reconciliation = matching documentation to charges and payments.',tp:'Revenue'},
+{q:'Claim rejected for "invalid payer ID." This is a:',o:['Denial','Rejection','Appeal opportunity','Write-off'],a:1,r:'B: Invalid payer ID = front-end data error = rejection.',tp:'Denials'},
+{q:'E/M code for established patient vs new patient: key difference is:',o:['Insurance type','Whether seen within 3 years by provider in same group','Patient age','Diagnosis severity'],a:1,r:'B: Established = seen within 3 years by provider in same group/specialty.',tp:'CPT'},
+{q:'ABN must be signed:',o:['After the service and denial','Before the service is provided','Only for commercial plans','At annual enrollment'],a:1,r:'B: ABN = BEFORE service so patient can make informed decision.',tp:'ABN'},
+{q:'Auditing in medical billing involves:',o:['Only counting patient visits','Reviewing documentation and coding for accuracy, compliance, and correct reimbursement','Scheduling appointments','Ordering supplies'],a:1,r:'B: Auditing reviews docs/codes for accuracy and compliance.',tp:'Revenue'},
+{q:'Patient upset about balance after denial. Best approach:',o:['Tell them to call insurance','Verify identity, calmly explain denial, discuss options (appeal, payment plan), offer escalation','Waive the balance','Hang up'],a:1,r:'B: Verify identity, explain, offer solutions. Professional and empathetic.',tp:'Communication'},
+{q:'Modifier 52 indicates:',o:['Bilateral procedure','Reduced services','Distinct procedure','Repeat by different provider'],a:1,r:'B: 52 = reduced/partially eliminated service.',tp:'Modifiers'},
+{q:'Which is NOT a purpose of the diagnosis pointer?',o:['Linking procedure to diagnosis','Establishing medical necessity','Showing which diagnosis supports the service','Determining the patient copay amount'],a:3,r:'D: Diagnosis pointers link CPT to ICD for medical necessity — they do not determine copay amounts. Copays are set by the insurance plan.',tp:'CMS'},
+{q:'Data entry into EMR/EHR requires:',o:['Speed over accuracy','Accuracy, verifying correct patient and correct fields','Only clinical staff can enter data','Paper backup for every entry'],a:1,r:'B: Accuracy is paramount — correct patient, correct fields, verified information.',tp:'EHR'},
+{q:'Indigent programs are designed for patients who:',o:['Have excellent insurance','Cannot afford healthcare due to very low income','Only need prescriptions','Are over 65'],a:1,r:'B: Indigent programs provide care for patients with very low income/resources.',tp:'Financial'},
+];
+
+/* === CHALLENGE UI === */
+let cI=0,cTimer=null,cTime=30,cStarted=false,cDone=false;
+function bCH(){
+let h=`<div class="g"><h2>⏱️ Timed Challenge</h2><p>${CQ.length} questions, 30 seconds each. Test your speed and accuracy.</p>
+<button class="btn bp" onclick="startCH()" id="chStart">▶ Start Challenge</button></div>`;
+h+=`<div id="chC"></div>`;
+document.getElementById('s7').innerHTML=h}
+function startCH(){cI=0;cDone=false;S.ca={};S.cf={};ss();cStarted=true;document.getElementById('chStart').style.display='none';rCH()}
+function rCH(){
+if(cI>=CQ.length){endCH();return}
+cTime=30;
+let h=`<div class="tb"><div class="tf" id="ctf" style="width:100%"></div></div>`;
+h+=`<div class="qm" id="cm"></div>`;
+const q=CQ[cI];
+h+=`<div class="g" style="font-size:11px;color:var(--dim)">Q${cI+1}/${CQ.length} — ${q.tp} — ${cTime}s</div>`;
+h+=`<div class="g"><div class="qb"><div class="qt">${q.q}</div>`;
+q.o.forEach((o,i)=>{h+=`<button class="ob" onclick="aCH(${i})">${'ABCD'[i]}. ${o}</button>`});
+h+=`<div class="rt" id="chr">${fmtR(q.r)}</div></div></div>`;
+h+=`<div style="display:flex;gap:8px;justify-content:center"><button class="btn bw" onclick="S.cf[cI]=!S.cf[cI];ss()">⚑ Flag</button></div>`;
+document.getElementById('chC').innerHTML=h;
+// map
+let m='';CQ.forEach((_,i)=>{const ans=S.ca[i];const fl=S.cf[i];const cls=i===cI?'cu':fl?'fl':ans===true?'ok':ans===false?'no':'uv';m+=`<button class="qd ${cls}" style="width:24px;height:24px;font-size:9px">${i+1}</button>`});
+document.getElementById('cm').innerHTML=m;
+clearInterval(cTimer);
+cTimer=setInterval(()=>{cTime--;const pct=(cTime/30)*100;const tf=document.getElementById('ctf');if(tf)tf.style.width=pct+'%';if(cTime<=0){clearInterval(cTimer);S.ca[cI]=false;ss();uP();pW();setTimeout(()=>{cI++;rCH()},800)}},1000)}
+function aCH(i){clearInterval(cTimer);const ok=CQ[cI].a===i;S.ca[cI]=ok;ss();uP();if(ok)pC();else pW();document.getElementById('chr').classList.add('show');document.querySelectorAll('#chC .ob').forEach(b=>b.classList.add('dis'));document.querySelectorAll('#chC .ob').forEach((b,j)=>{if(j===CQ[cI].a)b.classList.add('ok')});if(!ok)document.querySelectorAll('#chC .ob')[i].classList.add('no');setTimeout(()=>{cI++;rCH()},1800)}
+function endCH(){
+clearInterval(cTimer);cDone=true;
+const total=CQ.length,correct=Object.values(S.ca).filter(v=>v).length;
+const topics={};CQ.forEach((q,i)=>{if(!topics[q.tp])topics[q.tp]={c:0,t:0};topics[q.tp].t++;if(S.ca[i])topics[q.tp].c++});
+let h=`<div class="g"><h2>🏁 Challenge Complete!</h2><p style="font-size:20px">Score: <b style="color:var(--lime)">${correct}/${total}</b> (${Math.round(correct/total*100)}%)</p></div>`;
+if(correct>=total*.8)conf();
+h+=`<div class="g"><h3>📊 Score by Topic</h3>`;
+Object.keys(topics).forEach(tp=>{const t=topics[tp];const pct=Math.round(t.c/t.t*100);const col=pct>=80?'var(--emerald)':pct>=60?'var(--gold)':'var(--rose)';h+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span>${tp}</span><span style="color:${col};font-weight:700">${t.c}/${t.t} (${pct}%)</span></div>`});
+// Weakest
+const weak=Object.entries(topics).filter(([_,v])=>v.c/v.t<0.7).map(([k])=>k);
+if(weak.length)h+=`<div class="ib tr" style="margin-top:12px"><h4>📌 Focus Areas</h4><p>Review: ${weak.join(', ')}</p></div>`;
+h+=`</div>`;
+document.getElementById('chC').innerHTML=h}
+
+/* === DASHBOARD === */
+function bDB(){
+const fm=Object.values(S.fc).filter(v=>v==='m').length;
+const fs=Object.values(S.fc).filter(v=>v==='s').length;
+const fb=Object.values(S.fc).filter(v=>v==='b').length;
+const pa=Object.keys(S.pa).length,pc=Object.values(S.pa).filter(v=>v).length;
+const ca=Object.keys(S.ca).length,cc=Object.values(S.ca).filter(v=>v).length;
+// Missed topics
+const missed={};PQ.forEach((q,i)=>{if(S.pa[i]===false){missed[q.tp]=(missed[q.tp]||0)+1}});
+CQ.forEach((q,i)=>{if(S.ca[i]===false){missed[q.tp]=(missed[q.tp]||0)+1}});
+let h=`<div class="g"><h2>📊 Final Review Dashboard</h2></div>`;
+h+=`<div class="dg">
+<div class="dc"><div class="dl">📚 Lessons</div><div class="bn" style="color:var(--sky)">${S.lc.length}/13</div></div>
+<div class="dc"><div class="dl">🃏 Mastered</div><div class="bn" style="color:var(--emerald)">${fm}</div></div>
+<div class="dc"><div class="dl">🔄 Study Again</div><div class="bn" style="color:var(--rose)">${fs}</div></div>
+<div class="dc"><div class="dl">★ Bookmarked</div><div class="bn" style="color:var(--gold)">${fb}</div></div>
+<div class="dc"><div class="dl">✏️ Practice</div><div class="bn" style="color:var(--sky)">${pc}/${pa||'-'}</div></div>
+<div class="dc"><div class="dl">⏱️ Challenge</div><div class="bn" style="color:var(--purple)">${cc}/${ca||'-'}</div></div></div>`;
+if(Object.keys(missed).length){
+h+=`<div class="g"><h3>📌 Missed Topics</h3>`;
+Object.entries(missed).sort((a,b)=>b[1]-a[1]).forEach(([tp,ct])=>{h+=`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span>${tp}</span><span style="color:var(--rose)">${ct} missed</span></div>`});
+h+=`</div>`}
+h+=`<div class="g"><h3>📝 Generate Study Report</h3>
+<p><label>Name: <input type="text" id="rName" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 10px;color:var(--text);width:200px" placeholder="Your name"></label></p>
+<p style="margin-top:8px"><label>Notes: <textarea id="rNotes" rows="3" style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px;color:var(--text);resize:vertical" placeholder="Personal reflections..."></textarea></label></p>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="btn bp" onclick="genReport()">📋 Copy Report</button>
+<button class="btn bs" onclick="window.print()">🖨️ Print</button>
+<button class="btn bd" onclick="if(confirm('Reset all progress?')){localStorage.removeItem('ccma');location.reload()}">🗑️ Reset Progress</button>
+</div></div>`;
+document.getElementById('s8').innerHTML=h}
+function genReport(){
+const name=document.getElementById('rName').value||'Student';
+const notes=document.getElementById('rNotes').value||'None';
+const fm=Object.values(S.fc).filter(v=>v==='m').length;
+const pa=Object.keys(S.pa).length,pc=Object.values(S.pa).filter(v=>v).length;
+const ca=Object.keys(S.ca).length,cc=Object.values(S.ca).filter(v=>v).length;
+let r=`CCMA Billing/Coding/Insurance Study Report\n`;
+r+=`Student: ${name}\nDate: ${new Date().toLocaleDateString()}\n\n`;
+r+=`Lessons Completed: ${S.lc.length}/13\n`;
+r+=`Flashcards Mastered: ${fm}/${FC.length}\n`;
+r+=`Practice Score: ${pc}/${pa}\n`;
+r+=`Challenge Score: ${cc}/${ca}\n\n`;
+r+=`Missed Topics:\n`;
+const missed={};PQ.forEach((q,i)=>{if(S.pa[i]===false)missed[q.tp]=(missed[q.tp]||0)+1});
+CQ.forEach((q,i)=>{if(S.ca[i]===false)missed[q.tp]=(missed[q.tp]||0)+1});
+if(Object.keys(missed).length){Object.entries(missed).forEach(([tp,ct])=>{r+=`  - ${tp}: ${ct} missed\n`})}else{r+=`  None!\n`}
+r+=`\nPersonal Notes:\n${notes}\n`;
+navigator.clipboard.writeText(r).then(()=>alert('Report copied to clipboard!')).catch(()=>{const ta=document.createElement('textarea');ta.value=r;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('Report copied!')})}
+
+
+function topicStrategy(tp){const m={
+ 'Insurance':'Do the money in the correct order: billed amount → allowed amount → remaining deductible → coinsurance/copay → patient responsibility. Never calculate from the billed amount unless the question says self-pay.',
+ 'Plans':'Look for the controlling plan rule: referral, network, deductible, or workplace injury. HMO/POS usually point to PCP/referral logic; PPO points to flexibility; EPO points to in-network only.',
+ 'Medicare':'Attach each Medicare letter to a real service: A = admitted/inpatient, B = outpatient/provider/DME, C = private Advantage plan, D = drugs.',
+ 'Modifiers':'Ask what extra information the code needs: side, eyelid/finger/toe location, bilateral, repeat, reduced service, separate E/M, or distinct procedure.',
+ 'HIPAA':'Before releasing any billing or clinical information, identify the purpose and verify the person. TPO allows payment-related sharing, but minimum necessary still controls.',
+ 'ICD':'ICD answers WHY. Outpatient uncertain language like rule out, suspected, possible, probable means code symptoms, not the unconfirmed diagnosis.',
+ 'Denials':'Rejection means the claim did not get processed; denial means the payer processed it and refused payment. That one distinction controls the next action.',
+ 'CMS':'Think like the claim form: ICD diagnosis letters A/B/C/D support CPT procedure lines through diagnosis pointers.',
+ 'Revenue':'Follow the money trail: front-end accuracy prevents back-end denial. Verify early, document clearly, code from documentation, submit cleanly, then follow up aging.',
+ 'A/R':'Older balances become more urgent. 90–120+ days means investigate immediately before filing limits or collection problems worsen.',
+ 'ABN':'ABN is Medicare-specific and must happen before the service when Medicare may deny for medical necessity.',
+ 'Prior Auth':'Authorization is permission to perform/bill; it is not a promise of payment. High-cost imaging, DME, surgery, and non-formulary drugs often trigger it.',
+ 'EOB':'EOB explains what the payer did; it is not a bill. Use allowed amount, adjustment, paid amount, and patient responsibility.',
+ 'CPT':'CPT answers WHAT service was done. If it is not documented, it should not be coded.',
+ 'CPT/HCPCS':'CPT = procedure/service. HCPCS Level II = supplies, DME, ambulance, and certain drugs.',
+ 'Financial':'Financial assistance language usually points to income, resources, sliding scale, charity care, or indigent care.',
+ 'Communication':'Start with privacy and calm control: verify identity, explain what happened, give the next action, and escalate when needed.',
+ 'EHR':'Accuracy beats speed. Confirm the correct patient, correct field, and exact insurance/clinical data before saving.'
+};return m[tp]||'Identify the controlling clue in the stem, then eliminate every option by matching it to what it actually represents.'}
+
+function applyLessonUpgrades(){
+LS[1].c=`<div class="miniHero"><h3>📋 Plan Types: do not memorize names — read the control rule</h3><p>Plan questions are really asking: Who controls access? Is the provider in network? Is a referral needed? Who pays more?</p></div>
+<p class="scrollNote">Swipe/scroll sideways. Tap the flip cards to reveal the rule and example.</p>
+<div class="flipGrid">
+<div class="flipMini" onclick="this.classList.toggle('turned')"><div class="flipMiniInner"><div class="flipSide flipFront blue"><b>HMO</b><small>PCP controls the gate</small><p class="tapHint">tap</p></div><div class="flipSide flipBack"><small><b>Referral usually required.</b><br>Specialists must usually be in network. Out-of-network is usually not covered except emergency.<br><b>Example:</b> orthopedic visit → check PCP referral first.</small></div></div></div>
+<div class="flipMini" onclick="this.classList.toggle('turned')"><div class="flipMiniInner"><div class="flipSide flipFront green"><b>PPO</b><small>Flexible access</small><p class="tapHint">tap</p></div><div class="flipSide flipBack"><small><b>No PCP referral usually needed.</b><br>In-network costs less; out-of-network may still be covered but costs more.<br><b>Example:</b> patient books dermatologist directly.</small></div></div></div>
+<div class="flipMini" onclick="this.classList.toggle('turned')"><div class="flipMiniInner"><div class="flipSide flipFront purple"><b>EPO</b><small>Exclusive network</small><p class="tapHint">tap</p></div><div class="flipSide flipBack"><small><b>In-network only.</b><br>No referral usually needed, but out-of-network is not covered except emergencies.<br><b>Memory:</b> E = Exclusive.</small></div></div></div>
+<div class="flipMini" onclick="this.classList.toggle('turned')"><div class="flipMiniInner"><div class="flipSide flipFront orange"><b>POS</b><small>HMO + PPO blend</small><p class="tapHint">tap</p></div><div class="flipSide flipBack"><small><b>PCP/referral logic + some out-of-network access.</b><br>Usually cheaper in network, more expensive out of network.</small></div></div></div>
+<div class="flipMini" onclick="this.classList.toggle('turned')"><div class="flipMiniInner"><div class="flipSide flipFront rose"><b>HDHP</b><small>Deductible controls cost</small><p class="tapHint">tap</p></div><div class="flipSide flipBack"><small><b>High deductible, lower premium.</b><br>Patient may pay the full allowed amount until deductible is met. Often paired with HSA.</small></div></div></div>
+</div>
+<div class="teachGrid"><div class="teachBox navybox"><h4>🧠 How to choose the answer</h4><p>Find the clue: referral, network, deductible, specialist, emergency, or work injury. The plan name is less important than the rule it creates.</p></div><div class="teachBox purple"><h4>⚠️ Common trap</h4><p>EPO and HMO both restrict out-of-network care. But HMO usually needs referrals; EPO usually does not.</p></div><div class="teachBox green"><h4>✅ Workplace action</h4><p>Before the visit, verify eligibility, plan type, referral/preauth needs, deductible, copay, and network status.</p></div></div>`;
+LS[1].q.r='<b>C is correct.</b> EPO means Exclusive Provider Organization, so the controlling rule is in-network only except emergencies. <br><b>A:</b> Covered at a higher out-of-network rate describes a PPO more than an EPO. PPO plans usually give more out-of-network flexibility, but at higher patient cost. <br><b>B:</b> PCP referral logic points to HMO or POS. EPO plans usually do not require referrals, but they restrict the network. <br><b>D:</b> Switching to an HMO would not solve the out-of-network problem because HMOs are usually even more restrictive about network and referrals.';
+LS[2].c=`<div class="miniHero"><h3>🏛️ Medicare & Medicaid: attach the letter to the real service</h3><p>Students remember Medicare better when each part has a picture in their mind: hospital bed, clinic visit, private plan card, prescription bottle.</p></div>
+<div class="hScroll">
+<div class="scrollCard blue"><h4>🏥 Part A</h4><p><b>Hospital/inpatient.</b> Inpatient hospital, skilled nursing facility, hospice, some home health.</p><span class="mnemonic">A = Admitted</span></div>
+<div class="scrollCard green"><h4>🩺 Part B</h4><p><b>Outpatient/provider.</b> Office visits, labs, preventive services, DME such as walkers and wheelchairs.</p><span class="mnemonic">B = Beyond hospital</span></div>
+<div class="scrollCard purple"><h4>💳 Part C</h4><p><b>Medicare Advantage.</b> Private plan that replaces/bundles A+B and may include Part D and extras.</p><span class="mnemonic">C = Choice plan</span></div>
+<div class="scrollCard rose"><h4>💊 Part D</h4><p><b>Drugs.</b> Prescription drug coverage. Formularies and tiers affect patient cost.</p><span class="mnemonic">D = Drugs</span></div>
+<div class="scrollCard orange"><h4>🤝 Medicaid</h4><p><b>Income/resource based.</b> Federal/state program. Rules vary by state.</p></div>
+<div class="scrollCard navybox"><h4>⭐ Dual Eligible</h4><p>Patient has Medicare and Medicaid. Medicare is usually primary; Medicaid is secondary.</p></div>
+</div>
+<div class="teachGrid"><div class="teachBox blue"><h4>Example 1</h4><p>68-year-old admitted for pneumonia → Medicare Part A is the hospital benefit.</p></div><div class="teachBox green"><h4>Example 2</h4><p>Wheelchair for home use → DME → Medicare Part B.</p></div><div class="teachBox rose"><h4>Example 3</h4><p>Prescription inhaler coverage → Part D, unless it is under a special plan rule.</p></div></div>
+<div class="ib tr"><h4>⚠️ Trap</h4><p>DME is not Part D. Students see “medical item” and think drug coverage. DME belongs under Part B.</p></div>`;
+LS[2].q.r='<b>B is correct.</b> Durable medical equipment for home use, such as a wheelchair or walker, is generally associated with Medicare Part B. <br><b>A:</b> Part A is the hospital/inpatient benefit, not routine outpatient DME for home use. <br><b>C:</b> Part C is Medicare Advantage, a private plan structure. The underlying benefit for DME is still the Part B type of benefit. <br><b>D:</b> Part D is prescription drug coverage; it does not describe wheelchairs or walkers.';
+LS[3].c=`<div class="miniHero"><h3>🔄 Revenue Cycle: the money journey from appointment to final payment</h3><p>Each step affects the next. A small front-desk error can become a denial, unpaid balance, or appeal later.</p></div>
+<p class="scrollNote">Scroll sideways and click each step.</p><div class="ft" id="rf"></div><div class="g" id="rd" style="min-height:80px"><p style="color:var(--dim)">Click any colored step above to see what the medical assistant should notice.</p></div>
+<div class="teachGrid"><div class="teachBox blue"><h4>Front-end</h4><p>Scheduling, demographics, insurance, eligibility, referral, prior auth. This is where many denials are prevented.</p></div><div class="teachBox orange"><h4>Middle</h4><p>Provider documentation, ICD/CPT/HCPCS coding, modifiers, diagnosis pointers, charge entry.</p></div><div class="teachBox green"><h4>Back-end</h4><p>Claim submission, payer adjudication, EOB/RA, payment posting, patient statement, A/R follow-up.</p></div></div>
+<div class="ib tr"><h4>⚠️ Attention clue</h4><p>If the question asks “before the visit,” think eligibility, referral, prior authorization, and active coverage—not appeal or payment posting.</p></div>`;
+LS[3].q.r='<b>C is correct.</b> Eligibility should be verified before the patient is seen so the office knows whether coverage is active and whether plan rules apply. <br><b>A:</b> After claim submission is too late; an inactive plan or missing referral may already create rejection or denial. <br><b>B:</b> After the visit is still late because the office may have missed copay, referral, or authorization requirements. <br><b>D:</b> Waiting until denial is reactive. The revenue cycle works best when front-end verification prevents the problem.';
+LS[7].c=`<div class="miniHero"><h3>🏷️ What is a modifier?</h3><p>A modifier is a short add-on code that tells the payer an important detail about a CPT/HCPCS service without changing the basic procedure.</p></div>
+<div class="teachGrid"><div class="teachBox blue"><h4>Modifier answers:</h4><p>Which side? Which finger? Which toe? Both sides? Separate service? Reduced service? Repeat service?</p></div><div class="teachBox purple"><h4>Simple meaning</h4><p>The CPT code says the service. The modifier says the condition around that service.</p></div><div class="teachBox orange"><h4>Example</h4><p>Skin biopsy = service. Left index finger = location detail. A modifier may be needed so the payer understands exactly where.</p></div></div>
+<div class="bodyMap"><div class="diagram"><h4>👁️ Eyelid modifiers</h4><svg class="eyeSvg" viewBox="0 0 300 170"><ellipse cx="150" cy="85" rx="110" ry="50" fill="#dbeafe" stroke="#2563eb" stroke-width="6"/><circle cx="150" cy="85" r="28" fill="#38bdf8"/><circle cx="150" cy="85" r="12" fill="#0B1026"/><text x="52" y="45" font-size="18" fill="#111">E1 upper left</text><text x="52" y="142" font-size="18" fill="#111">E2 lower left</text><text x="178" y="45" font-size="18" fill="#111">E3 upper right</text><text x="178" y="142" font-size="18" fill="#111">E4 lower right</text></svg></div>
+<div class="diagram"><h4>🖐️ Finger modifiers</h4><svg class="handSvg" viewBox="0 0 300 180"><rect x="115" y="80" width="85" height="75" rx="24" fill="#fde68a" stroke="#f59e0b" stroke-width="4"/><rect x="75" y="78" width="34" height="68" rx="15" fill="#fecaca"/><rect x="110" y="28" width="28" height="73" rx="14" fill="#bfdbfe"/><rect x="143" y="18" width="28" height="84" rx="14" fill="#bbf7d0"/><rect x="176" y="30" width="28" height="72" rx="14" fill="#ddd6fe"/><rect x="209" y="52" width="28" height="50" rx="14" fill="#fbcfe8"/><text x="70" y="168" font-size="13">Left: FA F1 F2 F3 F4</text><text x="70" y="15" font-size="13">Right: F5 F6 F7 F8 F9</text></svg></div>
+<div class="diagram"><h4>🦶 Toe modifiers</h4><svg class="footSvg" viewBox="0 0 300 180"><ellipse cx="155" cy="105" rx="78" ry="48" fill="#bbf7d0" stroke="#10b981" stroke-width="4"/><circle cx="82" cy="62" r="20" fill="#fde68a"/><circle cx="120" cy="45" r="17" fill="#bfdbfe"/><circle cx="154" cy="39" r="16" fill="#fecaca"/><circle cx="186" cy="47" r="15" fill="#ddd6fe"/><circle cx="215" cy="62" r="13" fill="#fbcfe8"/><text x="42" y="160" font-size="13">Left: TA T1 T2 T3 T4</text><text x="42" y="18" font-size="13">Right: T5 T6 T7 T8 T9</text></svg></div></div>
+<div class="hScroll"><div class="scrollCard blue"><h4>25</h4><p>Significant, separately identifiable E/M on same day as procedure. Goes on the E/M code.</p></div><div class="scrollCard purple"><h4>59</h4><p>Distinct procedural service. Use when procedures are separate and independently supported.</p></div><div class="scrollCard green"><h4>50</h4><p>Bilateral procedure: both sides.</p></div><div class="scrollCard orange"><h4>52</h4><p>Reduced services: provider performed less than the full described service.</p></div><div class="scrollCard rose"><h4>76 / 77</h4><p>76 = repeat by same provider. 77 = repeat by different provider.</p></div></div>
+<table class="mt"><tr><th>Eyelids</th><th>Meaning</th></tr><tr><td>E1</td><td>Upper left eyelid</td></tr><tr><td>E2</td><td>Lower left eyelid</td></tr><tr><td>E3</td><td>Upper right eyelid</td></tr><tr><td>E4</td><td>Lower right eyelid</td></tr></table>
+<table class="mt"><tr><th>Fingers</th><th>Left</th><th>Right</th></tr><tr><td>Thumb</td><td>FA</td><td>F5</td></tr><tr><td>Index</td><td>F1</td><td>F6</td></tr><tr><td>Middle</td><td>F2</td><td>F7</td></tr><tr><td>Ring</td><td>F3</td><td>F8</td></tr><tr><td>Small</td><td>F4</td><td>F9</td></tr></table>
+<table class="mt"><tr><th>Toes</th><th>Left</th><th>Right</th></tr><tr><td>Great</td><td>TA</td><td>T5</td></tr><tr><td>2nd</td><td>T1</td><td>T6</td></tr><tr><td>3rd</td><td>T2</td><td>T7</td></tr><tr><td>4th</td><td>T3</td><td>T8</td></tr><tr><td>5th</td><td>T4</td><td>T9</td></tr></table>
+<h4>🖐️ Interactive Modifier Finder</h4><p>Click any body part:</p><div id="mf"></div><div id="mr" style="margin-top:8px;min-height:24px"></div>`;
+LS[7].q.r='<b>B is correct.</b> Modifier 25 belongs on the E/M code when the provider performs a significant, separately identifiable evaluation and management service on the same day as a procedure. <br><b>A:</b> Modifier 59 is for a distinct procedural service. It is used to separate procedures, not to mark an E/M visit. <br><b>C:</b> Modifier 50 means bilateral, meaning both sides of the body. It does not describe a separate E/M service. <br><b>D:</b> Modifier 76 means the same provider repeated the same procedure. It does not apply to an E/M plus biopsy situation.';
+}
+applyLessonUpgrades();
+
+function strengthenPracticeRationales(){
+ const byQ={
+ 'HMO patient scheduled with orthopedic specialist. No referral number in chart. MA should:':'<b>B is correct.</b> HMO + specialist + no referral number is the controlling clue. The medical assistant should verify whether a referral is required and obtain/document it before the visit when needed. <br><b>A:</b> Collecting the copay handles payment at check-in, but it does not satisfy the referral rule and may still lead to denial. <br><b>C:</b> An appeal happens after a denial; this question is asking what prevents the denial before care. <br><b>D:</b> An ABN is a Medicare medical-necessity notice, not a referral tool for an HMO specialist visit.',
+ 'Which code set identifies the REASON patient was seen?':'<b>C is correct.</b> ICD-10-CM identifies the diagnosis, condition, symptom, or reason for the encounter — the “why.” <br><b>A:</b> CPT reports what service or procedure was performed, such as an office visit or test. <br><b>B:</b> HCPCS Level II reports supplies, DME, ambulance, and some drugs; it does not identify the diagnosis. <br><b>D:</b> POS codes identify where the service happened, such as office, ER, or inpatient hospital.',
+ 'Medicare patient wants screening that may not be covered. Before test, MA should:':'<b>B is correct.</b> A Medicare ABN must be signed before the service when Medicare may not cover it, so the patient can make an informed financial decision. <br><b>A:</b> Billing after the denial is too late; the patient was not warned before receiving the service. <br><b>C:</b> Submitting first to “see what happens” is not the ABN workflow. The notice must come before the service. <br><b>D:</b> Suggesting a plan switch is outside the immediate MA action and does not address today’s service.',
+ 'EOB is best described as:':'<b>B is correct.</b> An EOB explains how the payer processed a claim: billed amount, allowed amount, paid amount, adjustment, denial reasons, and patient responsibility. <br><b>A:</b> A provider bill or patient statement asks the patient to pay. An EOB explains payer processing and is not itself a bill. <br><b>C:</b> A referral document authorizes or directs specialty care; it does not explain claim payment. <br><b>D:</b> A prescription form is a medication order, not a payer payment explanation.',
+ 'Claim returned because DOB is missing. This is a:':'<b>B is correct.</b> A missing DOB is a front-end data problem, so the claim is rejected before full payer adjudication. Fix the missing information and resubmit. <br><b>A:</b> A denial means the payer processed the claim and refused payment for a coverage, medical necessity, authorization, or benefit reason. <br><b>C:</b> An appeal asks the payer to reconsider a denial; this claim has not been fully processed yet. <br><b>D:</b> A write-off is an accounting adjustment, not the status of a claim with missing demographic data.',
+ 'Modifier 25 is appended to:':'<b>C is correct.</b> Modifier 25 goes on the E/M code when the evaluation/management service is significant and separately identifiable from a same-day procedure. <br><b>A:</b> ICD codes report diagnoses and do not receive CPT modifiers. <br><b>B:</b> The procedure code may need another modifier, but modifier 25 specifically belongs on the E/M service. <br><b>D:</b> HCPCS supply codes can take certain modifiers, but 25 is not used to label a supply.',
+ 'Medicare Part B covers:':'<b>B is correct.</b> Part B is the outpatient/provider side of Medicare: office visits, outpatient services, preventive services, labs, and DME. <br><b>A:</b> Inpatient hospital care is Part A. <br><b>C:</b> Prescription drug coverage is Part D. <br><b>D:</b> Medicare Advantage is Part C, a private plan structure that bundles benefits.',
+ 'Patient has $2,000 deductible (paid $2,000). Allowed $500, 20% coinsurance. Owes:':'<b>C is correct.</b> The deductible is already met, so calculate coinsurance on the allowed amount: 20% × $500 = $100. <br><b>A:</b> $500 would be the full allowed amount, but the plan shares cost after deductible is met. <br><b>B:</b> $400 is the insurance share if the plan pays 80%; it is not the patient share. <br><b>D:</b> $0 ignores the coinsurance that still applies after deductible is met.',
+ 'Which plan typically requires PCP referral for specialists?':'<b>C is correct.</b> HMO plans typically require a primary care provider and referral for specialty care. <br><b>A:</b> PPO plans are more flexible and usually do not require referrals for specialists. <br><b>B:</b> EPO plans usually restrict the network but do not typically require referrals. <br><b>D:</b> HDHP describes deductible structure, not referral rules.',
+ 'Minimum necessary rule under HIPAA requires:':'<b>B is correct.</b> Minimum necessary means sharing only the information needed for the task or purpose. <br><b>A:</b> Sharing all records automatically exposes unnecessary PHI. <br><b>C:</b> Never sharing anything is too extreme; HIPAA allows appropriate sharing for treatment, payment, and operations. <br><b>D:</b> Written authorization is not required for every TPO disclosure, but minimum necessary still applies.',
+ 'In outpatient, "rule out" diagnosis should be coded as:':'<b>B is correct.</b> In outpatient coding, uncertain diagnoses such as rule out, suspected, probable, or possible are not coded as confirmed. Code the presenting symptoms instead. <br><b>A:</b> Coding the diagnosis would falsely report a condition the provider has not confirmed. <br><b>C:</b> V codes are ICD-9 language; current ICD-10-CM uses Z codes for factors such as screenings and history. <br><b>D:</b> The encounter still needs codes; use symptoms or the documented reason for the visit.',
+ 'Both ears procedure. Modifier:':'<b>B is correct.</b> Modifier 50 means bilateral — the procedure was performed on both sides. <br><b>A:</b> Modifier 25 is for a separate significant E/M service on the same day as a procedure. <br><b>C:</b> Modifier 59 indicates a distinct procedural service, not simply both sides. <br><b>D:</b> Modifier 76 means the same provider repeated a procedure.',
+ 'Diagnosis pointer on claim connects:':'<b>B is correct.</b> The diagnosis pointer links each CPT/HCPCS service line to the ICD diagnosis letter that supports medical necessity. <br><b>A:</b> Patient-to-plan connection is handled through insurance/member information, not the diagnosis pointer. <br><b>C:</b> Referral to specialist is a plan/access requirement, not a diagnosis pointer function. <br><b>D:</b> Copay and deductible are benefit design issues, not diagnosis-linking tools.'
+ };
+ PQ.forEach(q=>{if(byQ[q.q])q.r=byQ[q.q]});
+}
+strengthenPracticeRationales();
+
+
+/* === INIT === */
+bN();bMM();bL();bFC();bCB();bIL();bCL();bPQ();bCH();bDB();go(0);uP();
+</script>
+</body>
+</html>
